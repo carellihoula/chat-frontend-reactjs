@@ -4,10 +4,10 @@ import styled from 'styled-components'
 
 
 
-export const PersonItem:React.FC<PersonItemProps> = ({id,name, photo, onClick}) => {
+export const PersonItem:React.FC<PersonItemProps> = ({id,name, photo, onClick, status}) => {
   return (
     <PersonItemStyled onClick={()=>onClick(id)}>
-        <div className='avatar online'>
+        <div className={`avatar ${status ? 'online':'offline'}`}>
             <div className='w-16 rounded-full'>
                 <img src={photo} alt={name} />
             </div>

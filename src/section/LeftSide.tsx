@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import ConversationList from "../components/ConversationList"
 import { users } from "../mock/users";
+import SearchBar from "../components/SearchBar";
 
 
 const LeftSide = () => {
@@ -9,6 +10,7 @@ const LeftSide = () => {
   };
   return (
     <LeftSideStyled>
+      <SearchBar/>
       <ConversationList onPersonClick={handleClick} person={users}/>
     </LeftSideStyled>
   )

@@ -20,6 +20,7 @@ export const ConversationList:React.FC<ConversationListProps> = ({onPersonClick}
                         name={person.name} 
                         photo={person.photo}
                         onClick={onPersonClick} 
+                        status={person.status}
                     />
                 </div>               
             )
