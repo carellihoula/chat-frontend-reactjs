@@ -62,6 +62,7 @@ const MessageInputStyled = styled.div`
   width: 90%;
   height: auto;
   min-height: 54px;
+  padding: 0 10px;
   .message__input{
     width: 90%;
     height: 95%;
