@@ -2,6 +2,7 @@ import React, {  FC, useState } from 'react'
 import { LuPlusCircle } from "react-icons/lu";
 import { BiSolidSend } from "react-icons/bi";
 import styled from 'styled-components';
+import { TextareaAutosize } from '@mui/material';
 
 interface MessageInputProps {
   onSendMessage: (message: string) => void;
@@ -10,7 +11,7 @@ interface MessageInputProps {
 const MessageInput:FC<MessageInputProps> = ({onSendMessage}) => {
   const [message, setMessage] = useState<string>('')
 
-  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
 
@@ -21,7 +22,7 @@ const MessageInput:FC<MessageInputProps> = ({onSendMessage}) => {
     }
   }
 
-  const handleKeyDown = (e:React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e:React.KeyboardEvent<HTMLTextAreaElement>) => {
     if(e.ctrlKey && e.key === "Enter"){
       handleSendMessage()
     }
@@ -30,8 +31,9 @@ const MessageInput:FC<MessageInputProps> = ({onSendMessage}) => {
   return (
     <MessageInputStyled>
         <LuPlusCircle color={"#6D6F78"} size={24}/>
-        <input 
-        type='text'
+        <TextareaAutosize
+        minRows={1}
+        maxRows={8}
         value={message}
         onChange={handleInputChange}
         placeholder='type your message'
@@ -58,7 +60,8 @@ const MessageInputStyled = styled.div`
   bottom: 0;
   margin-bottom: 30px;
   width: 90%;
-  height: 54px;
+  height: auto;
+  min-height: 54px;
   .message__input{
     width: 90%;
     height: 95%;
@@ -68,6 +71,7 @@ const MessageInputStyled = styled.div`
     color: white;
     font-family:'Times New Roman', Times, serif;
     font-size: 18px;
+    resize: none;
   }
   .message__input::placeholder{
     color:#6D6F78;
