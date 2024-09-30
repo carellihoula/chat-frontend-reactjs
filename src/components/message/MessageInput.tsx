@@ -21,8 +21,8 @@ const MessageInput:FC<MessageInputProps> = ({onSendMessage}) => {
     }
   }
 
-  const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>) => {
-    if(e.key = "Enter"){
+  const handleKeyDown = (e:React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.ctrlKey && e.key === "Enter"){
       handleSendMessage()
     }
   }
@@ -35,7 +35,7 @@ const MessageInput:FC<MessageInputProps> = ({onSendMessage}) => {
         value={message}
         onChange={handleInputChange}
         placeholder='type your message'
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyDown}
         className='message__input'
         />
         <BiSolidSend onClick={handleSendMessage} color={"#32c714"} size={24}/>
@@ -66,12 +66,13 @@ const MessageInputStyled = styled.div`
     outline: none;
     border-style: none;
     color: white;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 18px;
   }
   .message__input::placeholder{
     color:#6D6F78;
     font-size: 17px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Times New Roman', Times, serif;
   }
 
  
