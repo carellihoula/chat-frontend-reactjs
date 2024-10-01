@@ -23,7 +23,7 @@ const MenuStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
   //background: red;
   padding: 10px;
 `;

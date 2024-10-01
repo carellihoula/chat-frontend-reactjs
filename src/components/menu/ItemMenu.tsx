@@ -9,7 +9,7 @@ interface MenuItemProps {
 const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
   return (
     <MenuStyled className="menu-item">
-      {item.icon && <item.icon size={40} className="icon" />}
+      {item.icon && <item.icon size={35} className="icon" />}
       {item.imgUrl && (
         <div className="avatar">
           <div className="mask mask-squircle w-16">
