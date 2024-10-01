@@ -11,5 +11,5 @@ export const menuItems: IMenuItem[] = [
   },
   { id: 2, title: "Contact", icon: IoMdContacts },
   { id: 3, title: "Settings", icon: CiSettings },
-  { id: 4, title: "Logout", icon: CiBellOn },
+  { id: 4, title: "notifications", icon: CiBellOn },
 ];

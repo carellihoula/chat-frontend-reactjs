@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import styled from "styled-components";
 
@@ -25,9 +25,18 @@ const SearchBar: FC<MessageInputProps> = ({}) => {
     }
   };
 
+  useEffect(() => {
+    // Action when the message is updated or cleared
+    if (message === "") {
+      console.log("Message is cleared.");
+    } else {
+      console.log("Message updated:", message);
+    }
+  }, [message]);
+
   return (
     <SearchBarStyled>
-      <CiSearch color={"#6D6F78"} size={24} />
+      <CiSearch color={`${message !== "" ? "#FFF" : "6D6F78"}`} size={24} />
       <input
         type="text"
         value={message}
