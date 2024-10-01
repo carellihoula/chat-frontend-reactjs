@@ -1,18 +1,19 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import { menuItems } from "../utils/menu";
+import MenuList from "../components/menu/MenuList";
 
-
-const MenuBar = () => {
+export const MenuBar = () => {
   return (
     <MenuStyled>
-      Menu
+      <MenuList items={menuItems} />
     </MenuStyled>
-  )
-}
+  );
+};
 
-export default MenuBar
+export default MenuBar;
 
 const MenuStyled = styled.div`
-    background : #1E1F22;
-    width: 5%;
-
-`
+  background: #1e1f22;
+  width: 5%;
+  color: white;
+`;
