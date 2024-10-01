@@ -9,9 +9,12 @@ const RightSide = () => {
   };
   return (
     <RightSideStyled>
-      {messages.map((message) => (
-        <SingleMessage key={message.id} message={message} />
-      ))}
+      <Messages>
+        {messages.map((message) => (
+          <SingleMessage key={message.id} message={message} />
+        ))}
+      </Messages>
+
       <MessageInput onSendMessage={handleSendMessage} />
     </RightSideStyled>
   );
@@ -28,6 +31,20 @@ const RightSideStyled = styled.div`
   position: relative;
   padding: 20px 0;
   width: 65%;
-  overflow: auto;
   height: 100%;
+`;
+
+const Messages = styled.div`
+  display: flex;
+  flex-direction: column;
+  //background: red;
+  //justify-content: center;
+  align-items: center;
+  //background: #313338;
+  position: relative;
+  padding: 20px 0;
+  margin-bottom: 50px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
 `;

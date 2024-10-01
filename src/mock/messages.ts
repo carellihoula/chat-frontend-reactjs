@@ -65,4 +65,36 @@ export const messages: Message[] = [
     timestamp: new Date(),
     senderPhoto: "https://randomuser.me/api/portraits/women/8.jpg", // Exemple d'URL d'image
   },
+  {
+    id: 9,
+    sender: "Alice",
+    receiver: "Bob",
+    content: "Salut Bob, comment ça va ?",
+    timestamp: new Date(),
+    senderPhoto: "https://randomuser.me/api/portraits/women/7.jpg", // Exemple d'URL d'image
+  },
+  {
+    id: 10,
+    sender: "Alice",
+    receiver: "Bob",
+    content: "Salut Bob, comment ça va ?",
+    timestamp: new Date(),
+    senderPhoto: "https://randomuser.me/api/portraits/women/8.jpg", // Exemple d'URL d'image
+  },
+  {
+    id: 11,
+    sender: "Bob",
+    receiver: "Alice",
+    content: "Salut Alice ! Ça va bien, et toi ?",
+    timestamp: new Date(),
+    senderPhoto: "https://randomuser.me/api/portraits/men/4.jpg", // Exemple d'URL d'image
+  },
+  {
+    id: 12,
+    sender: "Bob",
+    receiver: "Alice",
+    content: "Salut Alice ! Ça va bien, et toi ?",
+    timestamp: new Date(),
+    senderPhoto: "https://randomuser.me/api/portraits/men/5.jpg", // Exemple d'URL d'image
+  },
 ];
