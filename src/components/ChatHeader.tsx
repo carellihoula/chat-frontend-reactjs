@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Person } from "../types__interfaces/interface";
-import { FaPhone } from "react-icons/fa6";
-import { BsFillCameraVideoFill } from "react-icons/bs";
 import { IoIosHelpCircle } from "react-icons/io";
+import { CiPhone } from "react-icons/ci";
+import { CiVideoOn } from "react-icons/ci";
+import { IoIosHelpCircleOutline } from "react-icons/io";
 
 type Props = {
   person: Person; // La personne avec laquelle vous discutez
@@ -24,9 +25,9 @@ const ChatHeader: React.FC<Props> = ({ person }) => {
         </div>
       </ProfileContainer>
       <OptionsContainer>
-        <FaPhone size={26} color={"#FFF"} />
-        <BsFillCameraVideoFill size={26} color={"#FFF"} />
-        <IoIosHelpCircle size={26} color={"#FFF"} />
+        <CiPhone size={26} color={"#FFF"} />
+        <CiVideoOn size={26} color={"#FFF"} />
+        <IoIosHelpCircleOutline size={26} color={"#FFF"} />
       </OptionsContainer>
     </HeaderContainer>
   );
