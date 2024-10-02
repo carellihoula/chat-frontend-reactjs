@@ -2,6 +2,8 @@ import styled from "styled-components";
 import MessageInput from "../components/message/MessageInput";
 import SingleMessage from "../components/message/SingleMessage";
 import { messages } from "../mock/messages";
+import ChatHeader from "../components/ChatHeader";
+import { users } from "../mock/users";
 
 const RightSide = () => {
   const handleSendMessage = (message: string) => {
@@ -9,6 +11,7 @@ const RightSide = () => {
   };
   return (
     <RightSideStyled>
+      <ChatHeader person={users[0]} />
       <Messages>
         {messages.map((message) => (
           <SingleMessage key={message.id} message={message} />
@@ -29,7 +32,6 @@ const RightSideStyled = styled.div`
   align-items: center;
   background: #313338;
   position: relative;
-  padding: 20px 0;
   width: 65%;
   height: 100%;
 `;
