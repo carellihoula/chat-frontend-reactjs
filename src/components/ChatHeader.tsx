@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Person } from "../types__interfaces/interface";
-import { IoIosHelpCircle } from "react-icons/io";
 import { CiPhone } from "react-icons/ci";
 import { CiVideoOn } from "react-icons/ci";
 import { IoIosHelpCircleOutline } from "react-icons/io";

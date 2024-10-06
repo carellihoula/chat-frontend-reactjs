@@ -3,6 +3,7 @@ import ConversationList from "../components/ConversationList";
 import { users } from "../mock/users";
 import SearchBar from "../components/SearchBar";
 import CopyRightFragment from "../components/CopyRightFragment";
+import Settings from "../pages/Settings";
 
 const LeftSide = () => {
   const handleClick = (id: number) => {
@@ -12,6 +13,7 @@ const LeftSide = () => {
     <LeftSideStyled>
       <SearchBar />
       <ConversationList onPersonClick={handleClick} person={users} />
+      <Settings />
       <CopyRightFragment />
     </LeftSideStyled>
   );
