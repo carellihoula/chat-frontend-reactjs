@@ -11,8 +11,8 @@ const LeftSide = () => {
   };
   return (
     <LeftSideStyled>
-      <SearchBar />
-      <ConversationList onPersonClick={handleClick} person={users} />
+      {/*<SearchBar />
+      <ConversationList onPersonClick={handleClick} person={users} />*/}
       <Settings />
       <CopyRightFragment />
     </LeftSideStyled>

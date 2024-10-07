@@ -18,7 +18,7 @@ const TextInputField: React.FC<TextInputWithIconProps> = ({
   return (
     <InputContainer>
       <IconWrapper>
-        <Icon color="#6D6F78" />
+        <Icon color="#FFF" />
       </IconWrapper>
       <StyledInput
         type="text"
