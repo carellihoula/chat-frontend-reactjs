@@ -4,16 +4,36 @@ import { users } from "../mock/users";
 import SearchBar from "../components/SearchBar";
 import CopyRightFragment from "../components/CopyRightFragment";
 import Settings from "../pages/Settings";
+import { useState } from "react";
+import { useMenu } from "../context/MenuContext";
 
 const LeftSide = () => {
+  const { selectedMenuId } = useMenu();
   const handleClick = (id: number) => {
     alert(`Clicked person with ID: ${id}`);
   };
+
+  const renderContent = () => {
+    switch (selectedMenuId) {
+      case 1:
+        return null;
+      case 2:
+        return (
+          <>
+            <SearchBar />
+            <ConversationList onPersonClick={handleClick} person={users} />;
+          </>
+        );
+
+      case 3:
+        return <Settings />;
+      default:
+        return null;
+    }
+  };
   return (
     <LeftSideStyled>
-      {/*<SearchBar />
-      <ConversationList onPersonClick={handleClick} person={users} />*/}
-      <Settings />
+      {renderContent()}
       <CopyRightFragment />
     </LeftSideStyled>
   );
