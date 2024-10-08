@@ -191,6 +191,10 @@ const ProfileStyled = styled.div`
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    //background-color: red;
   }
   .icon__save__or__edit {
     cursor: pointer;
