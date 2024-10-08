@@ -4,8 +4,8 @@ import { users } from "../mock/users";
 import SearchBar from "../components/SearchBar";
 import CopyRightFragment from "../components/CopyRightFragment";
 import Settings from "../pages/Settings";
-import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
+import Profile from "../pages/Profile";
 
 const LeftSide = () => {
   const { selectedMenuId } = useMenu();
@@ -16,11 +16,10 @@ const LeftSide = () => {
   const renderContent = () => {
     switch (selectedMenuId) {
       case 1:
-        return null;
+        return <Profile />;
       case 2:
         return (
           <>
-            <SearchBar />
             <ConversationList onPersonClick={handleClick} person={users} />;
           </>
         );
@@ -33,6 +32,7 @@ const LeftSide = () => {
   };
   return (
     <LeftSideStyled>
+      <SearchBar />
       {renderContent()}
       <CopyRightFragment />
     </LeftSideStyled>
