@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { MdEdit } from "react-icons/md";
 import { LiaSaveSolid } from "react-icons/lia";
+import { Person } from "../types__interfaces/interface";
 
-type Props = {};
+type Props = {
+  connectedUser: Person;
+};
 
-const Profile: React.FC<Props> = () => {
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("johndoe@example.com");
+const Profile: React.FC<Props> = ({ connectedUser }) => {
+  const [name, setName] = useState(connectedUser.name);
+  const [email, setEmail] = useState(connectedUser.email);
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [profileImage, setProfileImage] = useState(
-    "https://randomuser.me/api/portraits/men/1.jpg"
-  );
+  const [profileImage, setProfileImage] = useState(connectedUser.photo);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -42,6 +43,15 @@ const Profile: React.FC<Props> = () => {
     if (e.key === "Enter") {
       setIsEditingEmail(false);
     }
+  };
+
+  const handleSaveName = () => {
+    setIsEditingName(false);
+    //api to edit name
+  };
+  const handleSaveEmail = () => {
+    setIsEditingEmail(false);
+    //api to edit name
   };
 
   return (
@@ -78,7 +88,7 @@ const Profile: React.FC<Props> = () => {
               color="#FFF"
               size={22}
               className="icon__save__or__edit"
-              onClick={() => setIsEditingName(false)}
+              onClick={handleSaveName}
             />
           </div>
         ) : (
@@ -106,6 +116,7 @@ const Profile: React.FC<Props> = () => {
               color="#FFF"
               size={22}
               className="icon__save__or__edit"
+              onClick={handleSaveEmail}
             />
           </div>
         ) : (

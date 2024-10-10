@@ -3,10 +3,10 @@ import { Person } from "../types__interfaces/interface";
 export const users: Person[] = [
   {
     id: 1,
-    name: "John Doe", // Utilisateur connecté
+    name: "Luco Ntsoumou", // Utilisateur connecté
     status: true,
     photo: "https://randomuser.me/api/portraits/men/1.jpg",
-    email: "john.doe@example.com",
+    email: "luco@example.com",
   },
   {
     id: 2,

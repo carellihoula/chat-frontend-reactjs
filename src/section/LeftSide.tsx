@@ -22,7 +22,7 @@ const LeftSide = () => {
   const renderContent = () => {
     switch (selectedMenuId) {
       case 1:
-        return <Profile />;
+        return <Profile connectedUser={users[0]} />;
       case 2:
         return (
           <>
