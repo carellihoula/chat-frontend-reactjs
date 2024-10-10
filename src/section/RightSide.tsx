@@ -6,6 +6,7 @@ import ChatHeader from "../components/ChatHeader";
 import { users } from "../mock/users";
 import { useEffect, useRef, useState } from "react";
 import { Message } from "../types__interfaces/interface";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 interface RightSideProps {
   selectedUserId: number | null; // Typage de selectedUserId
@@ -64,7 +65,9 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId }) => {
         </>
       ) : (
         <LogoContainer>
-          <img src="/path/to/your/logo.png" alt="Site Logo" />
+          <h1>Connect Instantly. Chat Effortlessly</h1>
+          <IoChatbubbleEllipsesOutline color="#FFF" size={300} />
+          <h2>Click on a Person to Start the Conversation</h2>
         </LogoContainer>
       )}
     </RightSideStyled>
@@ -101,13 +104,24 @@ const Messages = styled.div`
 
 const LogoContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  gap: 20px;
   width: 100%;
   height: 100%;
 
-  img {
-    max-width: 50%;
-    height: auto;
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+  }
+  h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
   }
 `;
