@@ -11,14 +11,15 @@ export interface PersonItemProps {
 export interface Person {
   id: number;
   name: string;
-  photo: string;
   status: boolean;
+  photo: string;
+  email: string;
 }
 
 export interface Message {
   id: number;
-  sender: string;
-  receiver: string;
+  senderId: number;
+  receiverId: number;
   content: string;
   timestamp: Date;
   senderPhoto: string;

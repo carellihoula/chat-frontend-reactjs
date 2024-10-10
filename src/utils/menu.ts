@@ -6,7 +6,7 @@ export const menuItems: IMenuItem[] = [
   {
     id: 1,
     title: "Profil",
-    imgUrl: "https://randomuser.me/api/portraits/men/3.jpg",
+    imgUrl: "https://randomuser.me/api/portraits/men/1.jpg",
   },
   { id: 2, title: "Contact", icon: IoMdContacts },
   { id: 3, title: "Settings", icon: CiSettings },

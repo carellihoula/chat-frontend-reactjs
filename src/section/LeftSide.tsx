@@ -6,11 +6,17 @@ import CopyRightFragment from "../components/CopyRightFragment";
 import Settings from "../pages/Settings";
 import { useMenu } from "../context/MenuContext";
 import Profile from "../pages/Profile";
+import { useSelectedUser } from "../context/SelectedUserContext";
 
 const LeftSide = () => {
   const { selectedMenuId } = useMenu();
+  const { selectedUser, setSelectedUser } = useSelectedUser();
   const handleClick = (id: number) => {
-    alert(`Clicked person with ID: ${id}`);
+    //alert(`Clicked person with ID: ${id}`);
+    const person = users.find((user) => user.id === id);
+    if (person) {
+      setSelectedUser(person);
+    }
   };
 
   const renderContent = () => {

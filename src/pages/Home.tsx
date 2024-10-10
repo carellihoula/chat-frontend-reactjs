@@ -1,21 +1,18 @@
-import React from "react";
+//import React from "react";
 import MenuBar from "../section/MenuBar";
 import LeftSide from "../section/LeftSide";
 import RightSide from "../section/RightSide";
 import styled from "styled-components";
-import { MenuProvider } from "../context/MenuContext";
+import { useSelectedUser } from "../context/SelectedUserContext";
 
-type Props = {};
-
-export const Home = (props: Props) => {
+export const Home = () => {
+  const { selectedUser } = useSelectedUser();
   return (
-    <MenuProvider>
-      <HomeStyled>
-        <MenuBar />
-        <LeftSide />
-        <RightSide />
-      </HomeStyled>
-    </MenuProvider>
+    <HomeStyled>
+      <MenuBar />
+      <LeftSide />
+      <RightSide selectedUserId={selectedUser?.id ?? null} />
+    </HomeStyled>
   );
 };
 

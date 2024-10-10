@@ -12,9 +12,11 @@ interface ConversationListProps {
 export const ConversationList: React.FC<ConversationListProps> = ({
   onPersonClick,
 }) => {
+  // Filtrer les utilisateurs pour exclure l'utilisateur connecté (id: 1)
+  const usersFiltered = users.filter((user) => user.id !== 1);
   return (
     <ConvListStyled>
-      {users.map((person) => (
+      {usersFiltered.map((person) => (
         <div key={person.id} className="person__list">
           <PersonItem
             id={person.id}

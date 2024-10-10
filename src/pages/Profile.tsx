@@ -11,7 +11,7 @@ const Profile: React.FC<Props> = () => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [profileImage, setProfileImage] = useState(
-    "https://randomuser.me/api/portraits/men/3.jpg"
+    "https://randomuser.me/api/portraits/men/1.jpg"
   );
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
