@@ -1,28 +1,27 @@
 import { IconType } from "react-icons";
 
 export interface PersonItemProps {
-  id: number;
+  id: string;
   name: string;
   photo: string;
-  onClick: (id: number) => void;
+  onClick: (id: string) => void;
   status: boolean;
 }
 
 export interface Person {
-  id: number;
-  name: string;
+  id: string;
+  username: string;
   status: boolean;
-  photo: string;
+  avatar: string;
   email: string;
 }
 
 export interface Message {
-  id: number;
-  senderId: number;
-  receiverId: number;
+  id: string;
+  senderId: string;
+  recipientId: string;
   content: string;
   timestamp: Date;
-  senderPhoto: string;
 }
 
 export interface IMenuItem {

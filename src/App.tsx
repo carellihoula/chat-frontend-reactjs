@@ -1,18 +1,15 @@
 import "./App.css";
 import { Home } from "./pages/Home";
 import "./index.css";
-import { SelectedUserProvider } from "./context/SelectedUserContext";
-import { MenuProvider } from "./context/MenuContext";
+import LoginAndRegister from "./pages/LoginAndRegister";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <SelectedUserProvider>
-      <MenuProvider>
-        <div className="App">
-          <Home />
-        </div>
-      </MenuProvider>
-    </SelectedUserProvider>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/auth" element={<LoginAndRegister />} />
+    </Routes>
   );
 }
 

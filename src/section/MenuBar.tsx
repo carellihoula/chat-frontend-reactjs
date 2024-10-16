@@ -2,12 +2,17 @@ import styled from "styled-components";
 import { menuItems } from "../utils/menu";
 import MenuList from "../components/menu/MenuList";
 import { CiLogout } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 export const MenuBar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    navigate("/auth");
+  };
   return (
     <MenuStyled>
       <MenuList items={menuItems} />
-      <CiLogout className="logout__button" size={35} />
+      <CiLogout className="logout__button" size={35} onClick={handleLogout} />
     </MenuStyled>
   );
 };
@@ -32,5 +37,9 @@ const MenuStyled = styled.div`
   }
   .logout__button:hover {
     background: #e21b1b;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
   }
 `;

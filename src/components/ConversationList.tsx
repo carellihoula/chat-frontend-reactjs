@@ -6,22 +6,24 @@ import styled from "styled-components";
 
 interface ConversationListProps {
   person: Person[];
-  onPersonClick: (idPerson: number) => void;
+  onPersonClick: (idPerson: string) => void;
 }
 
 export const ConversationList: React.FC<ConversationListProps> = ({
   onPersonClick,
 }) => {
   // Filtrer les utilisateurs pour exclure l'utilisateur connecté (id: 1)
-  const usersFiltered = users.filter((user) => user.id !== 1);
+  const usersFiltered = users.filter(
+    (user) => user.id !== "6709ba9f2e2bb797d6ba67a3"
+  );
   return (
     <ConvListStyled>
       {usersFiltered.map((person) => (
         <div key={person.id} className="person__list">
           <PersonItem
             id={person.id}
-            name={person.name}
-            photo={person.photo}
+            name={person.username}
+            photo={person.avatar}
             onClick={onPersonClick}
             status={person.status}
           />
@@ -45,5 +47,9 @@ const ConvListStyled = styled.div`
     //for debugging => background: red;
     //background-color: yellow;
     padding: 8px;
+  }
+
+  @media (max-width: 402px) {
+    display: none;
   }
 `;

@@ -42,4 +42,11 @@ const PersonItemStyled = styled.div`
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
       "Lucida Sans", Arial, sans-serif;
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    .name {
+      font-size: 1rem;
+    }
+  }
 `;

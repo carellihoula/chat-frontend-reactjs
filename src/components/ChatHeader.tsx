@@ -15,11 +15,11 @@ const ChatHeader: React.FC<Props> = ({ person }) => {
       <ProfileContainer>
         <div className="avatar mr-4">
           <div className="w-12 rounded-full">
-            <img src={person.photo} alt={person.name} />
+            <img src={person.avatar} alt={person.username} />
           </div>
         </div>
         <div>
-          <PersonName>{person.name}</PersonName>
+          <PersonName>{person.username}</PersonName>
           <Status>{person.status ? "Online" : "Offline"}</Status>
         </div>
       </ProfileContainer>

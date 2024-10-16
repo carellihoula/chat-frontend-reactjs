@@ -79,4 +79,8 @@ const MessageInputStyled = styled.div`
     font-size: 17px;
     font-family: "Times New Roman", Times, serif;
   }
+
+  @media (max-width: 480px) {
+    margin-bottom: 100px;
+  }
 `;

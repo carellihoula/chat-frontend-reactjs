@@ -4,6 +4,7 @@ import LeftSide from "../section/LeftSide";
 import RightSide from "../section/RightSide";
 import styled from "styled-components";
 import { useSelectedUser } from "../context/SelectedUserContext";
+import MenuBarPhone from "../components/MenuBarContainer";
 
 export const Home = () => {
   const { selectedUser } = useSelectedUser();
@@ -12,6 +13,7 @@ export const Home = () => {
       <MenuBar />
       <LeftSide />
       <RightSide selectedUserId={selectedUser?.id ?? null} />
+      <MenuBarPhone />
     </HomeStyled>
   );
 };
@@ -21,4 +23,7 @@ const HomeStyled = styled.div`
   flex-direction: row;
   width: 100%;
   height: 100vh;
+
+  @media (max-width: 480px) {
+  }
 `;

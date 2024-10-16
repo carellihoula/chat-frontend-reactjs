@@ -23,4 +23,8 @@ const Container = styled.div`
   background: #383a40;
   width: 100%;
   height: auto;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;

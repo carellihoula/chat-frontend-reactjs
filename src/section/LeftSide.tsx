@@ -10,8 +10,8 @@ import { useSelectedUser } from "../context/SelectedUserContext";
 
 const LeftSide = () => {
   const { selectedMenuId } = useMenu();
-  const { selectedUser, setSelectedUser } = useSelectedUser();
-  const handleClick = (id: number) => {
+  const { setSelectedUser } = useSelectedUser();
+  const handleClick = (id: string) => {
     //alert(`Clicked person with ID: ${id}`);
     const person = users.find((user) => user.id === id);
     if (person) {
@@ -53,4 +53,8 @@ const LeftSideStyled = styled.div`
   background: #2b2d31;
   width: 30%;
   position: relative;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;

@@ -1,40 +1,40 @@
 import styled from "styled-components";
 import MessageInput from "../components/message/MessageInput";
 import SingleMessage from "../components/message/SingleMessage";
-import { messages as initialMessages } from "../mock/messages";
 import ChatHeader from "../components/ChatHeader";
 import { users } from "../mock/users";
-import { useEffect, useRef, useState } from "react";
-import { Message } from "../types__interfaces/interface";
+import { useEffect, useRef } from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { useSocket } from "../context/SocketContext";
+import { useAuth } from "../context/AuthContext";
 
 interface RightSideProps {
-  selectedUserId: number | null; // Typage de selectedUserId
+  selectedUserId: string | null; // Typage de selectedUserId
 }
 
 const RightSide: React.FC<RightSideProps> = ({ selectedUserId }) => {
-  const [messages, setMessages] = useState(initialMessages);
+  const { messages, sendMessage, setRecipientId } = useSocket();
+  const { userId } = useAuth();
+  console.log("user: " + userId);
+  //const [messages, setMessages] = useState(initialMessages);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const handleSendMessage = (messageContent: string) => {
-    if (!selectedUserId) return;
+    if (!selectedUserId || !userId) return;
 
-    console.log("Message sent:", messageContent);
-    const newMessage: Message = {
-      id: messages.length + 1,
-      senderId: 1,
-      receiverId: selectedUserId,
-      content: messageContent,
-      timestamp: new Date(),
-      senderPhoto: "https://randomuser.me/api/portraits/men/1.jpg",
-    };
-    setMessages([...messages, newMessage]);
+    sendMessage(messageContent, selectedUserId, userId);
   };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
   };
+
   //console.log(messages);
+  useEffect(() => {
+    if (selectedUserId) {
+      setRecipientId(selectedUserId);
+    }
+  }, [selectedUserId, setRecipientId]);
 
   useEffect(() => {
     scrollToBottom();
@@ -43,11 +43,11 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId }) => {
   // Trouver l'utilisateur sélectionné
   const selectedUser = users.find((user) => user.id === selectedUserId);
 
-  // Filtrer les messages par l'utilisateur sélectionné
+  // Filtrer les messages pour n'afficher que ceux entre l'utilisateur connecté et le sélectionné
   const filteredMessages = messages.filter(
-    (msg) =>
-      (msg.senderId === selectedUserId || msg.receiverId === selectedUserId) &&
-      (msg.senderId === 1 || msg.receiverId === 1)
+    (message) =>
+      (message.senderId === userId && message.recipientId === selectedUserId) ||
+      (message.senderId === selectedUserId && message.recipientId === userId)
   );
 
   return (
@@ -85,6 +85,9 @@ const RightSideStyled = styled.div`
   position: relative;
   width: 65%;
   height: 100%;
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 const Messages = styled.div`
@@ -123,5 +126,9 @@ const LogoContainer = styled.div`
     font-size: 1.5rem;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
       "Lucida Sans", Arial, sans-serif;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
   }
 `;
