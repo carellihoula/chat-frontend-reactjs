@@ -3,6 +3,7 @@ import React from "react";
 import { Message } from "../../types__interfaces/interface";
 import styled from "styled-components";
 import { users } from "../../mock/users";
+import { useSelectedUser } from "../../context/SelectedUserContext";
 
 interface SingleMessageProps {
   message: Message;
@@ -10,7 +11,8 @@ interface SingleMessageProps {
 
 const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
   const messageDate = new Date(message.timestamp);
-
+  //const token = localStorage.getItem("token");
+  const { selectedUser } = useSelectedUser();
   // Formater la date au format jour/mois/année
   const formattedDate = messageDate.toLocaleDateString("fr-FR", {
     day: "2-digit",
@@ -34,14 +36,20 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
           <img src={user?.avatar} alt={message.content} />
         </div>
       </div>
-      <div className="message-content">
+      <div
+        className={`message-content ${
+          message.recipientId === selectedUser?.id
+            ? "recipient"
+            : "current_user"
+        }`}
+      >
         <p>
           <strong className="sender__name">{user?.username}</strong>
           <small className=" date ml-2">
             {formattedDate} {formattedTime}
           </small>
         </p>
-        <p className="message">{message.content}</p>
+        <div className="message">{message.content}</div>
       </div>
     </SingleMessageStyled>
   );
@@ -99,5 +107,31 @@ const SingleMessageStyled = styled.div`
   }
   .date {
     color: #bfc1c5;
+  }
+
+  @media (max-width: 480px) {
+    .avatar {
+      display: none;
+    }
+    .recipient {
+      background-color: #fff;
+      border-radius: 10px 0 10px 0;
+
+      * {
+        color: black;
+      }
+    }
+    .current__user {
+      background-color: green;
+    }
+    .sender__name {
+      display: none;
+    }
+    .message {
+      padding: 5px;
+    }
+    &:hover {
+      background: none;
+    }
   }
 `;

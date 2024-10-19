@@ -53,11 +53,12 @@ const MenuBarPhone = () => {
         </div>
       </MenuItem>
       <MenuItem>
-        <LiaUserFriendsSolid size={36} color="#FFF" />
-      </MenuItem>
-      <MenuItem>
         <IoChatbubblesOutline size={36} color="#FFF" />
       </MenuItem>
+      <MenuItem>
+        <LiaUserFriendsSolid size={36} color="#FFF" />
+      </MenuItem>
+
       <MenuItem>
         <CiSettings size={36} color="#FFF" />
       </MenuItem>

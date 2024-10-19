@@ -3,6 +3,7 @@ import { Person } from "../types__interfaces/interface";
 import { users } from "../mock/users";
 import PersonItem from "./PersonItem";
 import styled from "styled-components";
+import { getUserIdFromToken } from "../utils/auth";
 
 interface ConversationListProps {
   person: Person[];
@@ -13,8 +14,10 @@ export const ConversationList: React.FC<ConversationListProps> = ({
   onPersonClick,
 }) => {
   // Filtrer les utilisateurs pour exclure l'utilisateur connecté (id: 1)
+  const token = localStorage.getItem("token");
+
   const usersFiltered = users.filter(
-    (user) => user.id !== "6709ba9f2e2bb797d6ba67a3"
+    (user) => token && user.id !== getUserIdFromToken(token)
   );
   return (
     <ConvListStyled>

@@ -49,7 +49,7 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId }) => {
       (message.senderId === userId && message.recipientId === selectedUserId) ||
       (message.senderId === selectedUserId && message.recipientId === userId)
   );
-
+  console.log("list :" + typeof messages);
   return (
     <RightSideStyled>
       {selectedUserId && selectedUser ? (

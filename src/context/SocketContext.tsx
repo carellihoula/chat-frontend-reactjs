@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import socket from "../socket";
 import { Message } from "../types__interfaces/interface";
 import axios from "axios";
+import { getUserIdFromToken } from "../utils/auth";
 
 interface SocketContextProps {
   messages: Message[];
@@ -27,12 +28,17 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     if (!recipientId) return;
-
+    const token = localStorage.getItem("token");
     // Récupérer l'historique des messages
     const fetchMessages = async () => {
       try {
         const response = await axios.get<Message[]>(
-          `http://localhost:3000/api/messages/${recipientId}`
+          `http://localhost:3000/api/messages/${recipientId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setMessages(response.data);
         console.log(response.data);
@@ -46,11 +52,13 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     // Écouter les messages entrants
+    const token = localStorage.getItem("token");
+    if (!token) return;
     socket.on("receiveMessage", (message: Message) => {
       if (
         (message.senderId === recipientId &&
-          message.recipientId === "6709ba9f2e2bb797d6ba67a3") ||
-        (message.senderId === "6709ba9f2e2bb797d6ba67a3" &&
+          message.recipientId === getUserIdFromToken(token)) ||
+        (message.senderId === getUserIdFromToken(token) &&
           message.recipientId === recipientId)
       ) {
         setMessages((prevMessages) => [...prevMessages, message]);
