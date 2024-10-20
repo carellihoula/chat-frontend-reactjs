@@ -129,6 +129,28 @@ const LogoContainer = styled.div`
   }
 
   @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    height: 100%;
+
+    h1 {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    }
+    h2 {
+      display: none;
+      color: #fff;
+      font-size: 1rem;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+      z-index: 3;
+      margin-bottom: 60px;
+    }
   }
 `;

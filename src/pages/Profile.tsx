@@ -9,11 +9,11 @@ type Props = {
 };
 
 const Profile: React.FC<Props> = ({ connectedUser }) => {
-  const [name, setName] = useState(connectedUser.name);
+  const [name, setName] = useState(connectedUser.username);
   const [email, setEmail] = useState(connectedUser.email);
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [profileImage, setProfileImage] = useState(connectedUser.photo);
+  const [profileImage, setProfileImage] = useState(connectedUser.avatar);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
