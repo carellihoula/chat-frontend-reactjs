@@ -10,6 +10,11 @@ export interface RegisterData {
   password: string;
 }
 
+export interface EditPasswordData {
+  currentPassword: string;
+  newPassword: string;
+}
+
 // Interface for API response
 export interface AuthResponse {
   token: string;

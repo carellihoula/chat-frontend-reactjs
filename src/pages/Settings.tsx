@@ -21,7 +21,6 @@ const Settings = (props: Props) => {
         value={language}
         onChange={handleLanguageChange}
       />
-      <button className="save__button">Save</button>
     </SettingStyled>
   );
 };
@@ -50,21 +49,5 @@ const SettingStyled = styled.div`
     font-size: 1.2rem;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
       "Lucida Sans", Arial, sans-serif;
-  }
-  .save__button {
-    background-color: green;
-    border-radius: 8px;
-    margin-top: 20px;
-    text-align: center;
-    padding: 10px;
-    width: 80%;
-    color: #fff;
-    font-weight: bold;
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-      "Lucida Sans", Arial, sans-serif;
-    z-index: 2;
-  }
-  .save__button:hover {
-    background-color: #2dc14e;
   }
 `;

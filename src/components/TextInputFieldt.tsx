@@ -7,6 +7,7 @@ type TextInputWithIconProps = {
   placeholder?: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
 };
 
 const TextInputField: React.FC<TextInputWithIconProps> = ({
@@ -14,6 +15,7 @@ const TextInputField: React.FC<TextInputWithIconProps> = ({
   placeholder = "Enter text...",
   value,
   onChange,
+  type = "text",
 }) => {
   return (
     <InputContainer>
@@ -21,7 +23,7 @@ const TextInputField: React.FC<TextInputWithIconProps> = ({
         <Icon color="#FFF" />
       </IconWrapper>
       <StyledInput
-        type="text"
+        type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
