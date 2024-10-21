@@ -9,10 +9,12 @@ import Profile from "../pages/Profile";
 import { useSelectedUser } from "../context/SelectedUserContext";
 import { useMediaQuery } from "react-responsive";
 import RightSide from "./RightSide";
+import { useEffect, useState } from "react";
 
 const LeftSide = () => {
   const { selectedMenuId } = useMenu();
   const { selectedUser, setSelectedUser } = useSelectedUser();
+  const [user, setUser] = useState(null);
   {
     /*<RightSide selectedUserId={selectedUser?.id ?? null} />*/
   }
@@ -27,10 +29,17 @@ const LeftSide = () => {
   const handleReturn = () => {
     setSelectedUser(null);
   };
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser); // Mettez à jour l'état avec les données de l'utilisateur
+    }
+  }, []);
   const renderContent = () => {
     switch (selectedMenuId) {
       case 1:
-        return <Profile connectedUser={users[0]} />;
+        return user && <Profile connectedUser={user} />;
       case 2:
         if (selectedUser && isMobile) {
           return (

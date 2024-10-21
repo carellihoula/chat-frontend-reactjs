@@ -3,17 +3,22 @@ import styled from "styled-components";
 import { MdEdit } from "react-icons/md";
 import { LiaSaveSolid } from "react-icons/lia";
 import { Person } from "../types__interfaces/interface";
+import { getValidAvatar } from "../utils/getValidAvatar";
 
 type Props = {
   connectedUser: Person;
 };
 
 const Profile: React.FC<Props> = ({ connectedUser }) => {
+  const defaultAvatar =
+    "https://canobucket.s3.eu-west-3.amazonaws.com/default-image.jpg";
   const [name, setName] = useState(connectedUser.username);
   const [email, setEmail] = useState(connectedUser.email);
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [profileImage, setProfileImage] = useState(connectedUser.avatar);
+  const [profileImage, setProfileImage] = useState(
+    getValidAvatar(connectedUser.avatar)
+  );
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -23,6 +28,7 @@ const Profile: React.FC<Props> = ({ connectedUser }) => {
     setEmail(e.target.value);
   };
 
+  //to manage user avatar
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
@@ -30,6 +36,9 @@ const Profile: React.FC<Props> = ({ connectedUser }) => {
         setProfileImage(event.target.result);
       };
       reader.readAsDataURL(e.target.files[0]);
+    } else {
+      // If no file is selected, revert to default avatar
+      setProfileImage(defaultAvatar);
     }
   };
 
@@ -63,6 +72,7 @@ const Profile: React.FC<Props> = ({ connectedUser }) => {
             alt="Profile"
             className="profile-image"
             style={{ cursor: "pointer" }}
+            onError={() => setProfileImage(defaultAvatar)}
           />
         </label>
         <input
@@ -136,6 +146,8 @@ const Profile: React.FC<Props> = ({ connectedUser }) => {
 };
 
 export default Profile;
+
+////////////////////////////////////////CSS-JS (Styled components)////////////////////////////////////////////////////////
 
 const ProfileStyled = styled.div`
   display: flex;
