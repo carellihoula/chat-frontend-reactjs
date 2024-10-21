@@ -15,7 +15,7 @@ const Settings = (props: Props) => {
     <SettingStyled>
       <h1 className="edit__password">Edit password</h1>
       <EditPassword />
-      <h1 className="edit__password">Languages</h1>
+      {/*<h1 className="edit__password">Languages</h1>*/}
       <LanguageSelect
         placeholder="Select your language"
         value={language}
@@ -36,7 +36,7 @@ const SettingStyled = styled.div`
   //background-color: red;
   position: relative;
   padding: 8px;
-  margin-top: 20px;
+  margin-top: 50px;
   width: 100%;
   height: 100%;
 
@@ -52,11 +52,9 @@ const SettingStyled = styled.div`
       "Lucida Sans", Arial, sans-serif;
   }
   .save__button {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 50px;
     background-color: green;
     border-radius: 8px;
+    margin-top: 20px;
     text-align: center;
     padding: 10px;
     width: 80%;

@@ -3,15 +3,24 @@ import styled from "styled-components";
 import { Person } from "../types__interfaces/interface";
 import { CiPhone } from "react-icons/ci";
 import { CiVideoOn } from "react-icons/ci";
-import { IoIosHelpCircleOutline } from "react-icons/io";
+import { IoIosArrowBack, IoIosHelpCircleOutline } from "react-icons/io";
+import { useMediaQuery } from "react-responsive";
 
 type Props = {
-  person: Person; // La personne avec laquelle vous discutez
+  person: Person;
+  onReturn: () => void;
 };
 
-const ChatHeader: React.FC<Props> = ({ person }) => {
+const ChatHeader: React.FC<Props> = ({ person, onReturn }) => {
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   return (
     <HeaderContainer>
+      {isMobile && (
+        <ReturnButton onClick={onReturn}>
+          <IoIosArrowBack size={24} color="#FFF" />
+        </ReturnButton>
+      )}
+
       <ProfileContainer>
         <div className="avatar mr-4">
           <div className="w-12 rounded-full">
@@ -66,4 +75,11 @@ const Status = styled.p`
 const OptionsContainer = styled.div`
   display: flex;
   gap: 15px;
+`;
+
+const ReturnButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
 `;

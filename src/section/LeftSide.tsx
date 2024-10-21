@@ -7,10 +7,16 @@ import Settings from "../pages/Settings";
 import { useMenu } from "../context/MenuContext";
 import Profile from "../pages/Profile";
 import { useSelectedUser } from "../context/SelectedUserContext";
+import { useMediaQuery } from "react-responsive";
+import RightSide from "./RightSide";
 
 const LeftSide = () => {
   const { selectedMenuId } = useMenu();
-  const { setSelectedUser } = useSelectedUser();
+  const { selectedUser, setSelectedUser } = useSelectedUser();
+  {
+    /*<RightSide selectedUserId={selectedUser?.id ?? null} />*/
+  }
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   const handleClick = (id: string) => {
     //alert(`Clicked person with ID: ${id}`);
     const person = users.find((user) => user.id === id);
@@ -18,27 +24,49 @@ const LeftSide = () => {
       setSelectedUser(person);
     }
   };
-
+  const handleReturn = () => {
+    setSelectedUser(null);
+  };
   const renderContent = () => {
     switch (selectedMenuId) {
       case 1:
         return <Profile connectedUser={users[0]} />;
       case 2:
-        return (
-          <>
-            <ConversationList onPersonClick={handleClick} person={users} />;
-          </>
-        );
+        if (selectedUser && isMobile) {
+          return (
+            <RightSide
+              selectedUserId={selectedUser.id}
+              onReturn={handleReturn}
+            />
+          );
+        } else {
+          return (
+            <>
+              <SearchBarWrapper isMobile={isMobile}>
+                <SearchBar />
+              </SearchBarWrapper>
+              <ConversationList onPersonClick={handleClick} person={users} />
+            </>
+          );
+        }
 
       case 3:
+        return (
+          <>
+            <SearchBarWrapper isMobile={isMobile}>
+              <SearchBar />
+            </SearchBarWrapper>
+            <div>My Friends</div>;
+          </>
+        );
+      case 4:
         return <Settings />;
       default:
         return null;
     }
   };
   return (
-    <LeftSideStyled>
-      <SearchBar />
+    <LeftSideStyled isMobile={isMobile}>
       {renderContent()}
       <CopyRightFragment />
     </LeftSideStyled>
@@ -47,7 +75,7 @@ const LeftSide = () => {
 
 export default LeftSide;
 
-const LeftSideStyled = styled.div`
+const LeftSideStyled = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   background: #2b2d31;
@@ -55,6 +83,21 @@ const LeftSideStyled = styled.div`
   position: relative;
 
   @media (max-width: 480px) {
-    display: none;
+    display: ${(props) =>
+      props.isMobile ? "block" : "none"}; /* Visible on mobile */
+    height: 100vh; /* Adjust height for mobile view */
+    width: 100%;
+    overflow-y: auto; /* Ensure scrolling if content overflows */
+  }
+`;
+const SearchBarWrapper = styled.div<{ isMobile: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: ${(props) => (props.isMobile ? "20px 0" : "10px 0")};
+  width: 100%;
+
+  @media (max-width: 480px) {
+    justify-content: center;
   }
 `;

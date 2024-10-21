@@ -69,6 +69,7 @@ export default LanguageSelect;
 // Styled Components
 
 const InputContainer = styled.div`
+  display: none;
   position: relative;
   width: 80%;
   height: auto;

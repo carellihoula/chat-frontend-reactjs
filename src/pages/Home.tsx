@@ -5,15 +5,27 @@ import RightSide from "../section/RightSide";
 import styled from "styled-components";
 import { useSelectedUser } from "../context/SelectedUserContext";
 import MenuBarPhone from "../components/MenuBarContainer";
+import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
-  const { selectedUser } = useSelectedUser();
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+  const { selectedUser, setSelectedUser } = useSelectedUser();
+
+  const handleReturn = () => {
+    setSelectedUser(null);
+  };
   return (
     <HomeStyled>
-      <MenuBar />
+      {!isMobile && <MenuBar />} {/* Show MenuBar only on non-mobile */}
       <LeftSide />
-      <RightSide selectedUserId={selectedUser?.id ?? null} />
-      <MenuBarPhone />
+      {!isMobile && (
+        <RightSide
+          selectedUserId={selectedUser?.id ?? null}
+          onReturn={handleReturn}
+        />
+      )}
+      {/* RightSide hidden on mobile */}
+      {isMobile && <MenuBarPhone />} {/* Show mobile MenuBar */}
     </HomeStyled>
   );
 };
@@ -25,5 +37,7 @@ const HomeStyled = styled.div`
   height: 100vh;
 
   @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
   }
 `;

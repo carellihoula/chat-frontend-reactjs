@@ -61,8 +61,8 @@ const SearchBarStyled = styled.div`
   border-style: none;
   border-radius: 10px;
   background: #383a40;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 70%;
   height: auto;
   min-height: 54px;

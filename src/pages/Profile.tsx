@@ -143,6 +143,8 @@ const ProfileStyled = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  margin-top: 50px;
+
   // background-color: red;
   .profile-image-container {
     position: relative;
@@ -213,5 +215,9 @@ const ProfileStyled = styled.div`
     padding: 5px;
     box-sizing: content-box;
     border-radius: 5px;
+  }
+  @media (max-width: 480px) {
+    margin-top: 50px;
+    overflow-y: hidden;
   }
 `;

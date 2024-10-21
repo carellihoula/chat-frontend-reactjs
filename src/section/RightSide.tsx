@@ -9,10 +9,11 @@ import { useSocket } from "../context/SocketContext";
 import { useAuth } from "../context/AuthContext";
 
 interface RightSideProps {
-  selectedUserId: string | null; // Typage de selectedUserId
+  selectedUserId: string | null;
+  onReturn: () => void; // Typage de selectedUserId
 }
 
-const RightSide: React.FC<RightSideProps> = ({ selectedUserId }) => {
+const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
   const { messages, sendMessage, setRecipientId } = useSocket();
   const { userId } = useAuth();
   console.log("user: " + userId);
@@ -49,12 +50,12 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId }) => {
       (message.senderId === userId && message.recipientId === selectedUserId) ||
       (message.senderId === selectedUserId && message.recipientId === userId)
   );
-  console.log("list :" + typeof messages);
+
   return (
     <RightSideStyled>
       {selectedUserId && selectedUser ? (
         <>
-          <ChatHeader person={selectedUser} />
+          <ChatHeader person={selectedUser} onReturn={onReturn} />
           <Messages>
             {filteredMessages.map((message) => (
               <SingleMessage key={message.id} message={message} />

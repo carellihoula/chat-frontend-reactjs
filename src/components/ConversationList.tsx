@@ -4,6 +4,7 @@ import { users } from "../mock/users";
 import PersonItem from "./PersonItem";
 import styled from "styled-components";
 import { getUserIdFromToken } from "../utils/auth";
+import { useSelectedUser } from "../context/SelectedUserContext";
 
 interface ConversationListProps {
   person: Person[];
@@ -13,6 +14,7 @@ interface ConversationListProps {
 export const ConversationList: React.FC<ConversationListProps> = ({
   onPersonClick,
 }) => {
+  const { selectedUser } = useSelectedUser();
   // Filtrer les utilisateurs pour exclure l'utilisateur connecté (id: 1)
   const token = localStorage.getItem("token");
 
@@ -29,6 +31,7 @@ export const ConversationList: React.FC<ConversationListProps> = ({
             photo={person.avatar}
             onClick={onPersonClick}
             status={person.status}
+            isSelected={person.id === selectedUser?.id}
           />
         </div>
       ))}
@@ -50,9 +53,5 @@ const ConvListStyled = styled.div`
     //for debugging => background: red;
     //background-color: yellow;
     padding: 8px;
-  }
-
-  @media (max-width: 402px) {
-    display: none;
   }
 `;
