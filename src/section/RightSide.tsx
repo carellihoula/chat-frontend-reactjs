@@ -69,7 +69,7 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
         <LogoContainer>
           <h1>Connect Instantly. Chat Effortlessly</h1>
           <IoChatbubbleEllipsesOutline color="#FFF" size={300} />
-          <h2>Click on a Person to Start the Conversation</h2>
+          <h2>Click on a User to Start the Conversation</h2>
         </LogoContainer>
       )}
     </RightSideStyled>
