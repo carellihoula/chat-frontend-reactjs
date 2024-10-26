@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IconType } from "react-icons";
 
@@ -17,12 +17,21 @@ const TextInputField: React.FC<TextInputWithIconProps> = ({
   onChange,
   type = "text",
 }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <InputContainer>
       <IconWrapper>
         <Icon color="#FFF" />
       </IconWrapper>
       <StyledInput
+        ref={inputRef}
         type={type}
         placeholder={placeholder}
         value={value}
