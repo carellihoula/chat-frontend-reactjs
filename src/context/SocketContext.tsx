@@ -3,6 +3,7 @@ import socket from "../socket";
 import { Message } from "../types__interfaces/interface";
 import axios from "axios";
 import { getUserIdFromToken } from "../utils/auth";
+import { getAuthHeaders } from "../utils/getAuthHeaders";
 
 interface SocketContextProps {
   messages: Message[];
@@ -28,16 +29,14 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     if (!recipientId) return;
-    const token = localStorage.getItem("token");
+
     // Récupérer l'historique des messages
     const fetchMessages = async () => {
       try {
         const response = await axios.get<Message[]>(
           `http://localhost:3000/api/messages/${recipientId}`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: getAuthHeaders(),
           }
         );
         setMessages(response.data);

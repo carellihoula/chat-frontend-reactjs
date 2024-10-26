@@ -2,8 +2,8 @@
 import React from "react";
 import { Message } from "../../types__interfaces/interface";
 import styled from "styled-components";
-import { users } from "../../mock/users";
 import { useSelectedUser } from "../../context/SelectedUserContext";
+import { useUserContext } from "../../context/UsersListContext";
 
 interface SingleMessageProps {
   message: Message;
@@ -11,6 +11,7 @@ interface SingleMessageProps {
 
 const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
   const messageDate = new Date(message.timestamp);
+  const { users } = useUserContext();
   //const token = localStorage.getItem("token");
   const { selectedUser } = useSelectedUser();
   // Formater la date au format jour/mois/année
@@ -20,7 +21,7 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
     year: "numeric",
   });
 
-  const user = users.find((user) => user.id === message.senderId);
+  const user = users.find((user) => user._id === message.senderId);
 
   // Formater l'heure en heures:minutes (format 24h)
   const formattedTime = messageDate.toLocaleTimeString("fr-FR", {
@@ -38,7 +39,7 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
       </div>
       <div
         className={`message-content ${
-          message.recipientId === selectedUser?.id
+          message.recipientId === selectedUser?._id
             ? "recipient"
             : "current_user"
         }`}

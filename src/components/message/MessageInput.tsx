@@ -30,7 +30,7 @@ const MessageInput: FC<MessageInputProps> = ({ onSendMessage }) => {
 
   return (
     <MessageInputStyled>
-      <LuPlusCircle color={"#6D6F78"} size={24} />
+      <LuPlusCircle color={"#6D6F78"} size={24} style={{ display: "none" }} />
       <TextareaAutosize
         minRows={1}
         maxRows={8}

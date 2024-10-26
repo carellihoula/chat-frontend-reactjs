@@ -7,6 +7,7 @@ import { SelectedUserProvider } from "./context/SelectedUserContext.tsx";
 import { MenuProvider } from "./context/MenuContext.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { SocketProvider } from "./context/SocketContext.tsx";
+import { UserProvider } from "./context/UsersListContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -14,9 +15,11 @@ createRoot(document.getElementById("root")!).render(
       <AuthProvider>
         <SelectedUserProvider>
           <MenuProvider>
-            <SocketProvider>
-              <App />
-            </SocketProvider>
+            <UserProvider>
+              <SocketProvider>
+                <App />
+              </SocketProvider>
+            </UserProvider>
           </MenuProvider>
         </SelectedUserProvider>
       </AuthProvider>

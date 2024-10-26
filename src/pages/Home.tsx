@@ -20,7 +20,7 @@ export const Home = () => {
       <LeftSide />
       {!isMobile && (
         <RightSide
-          selectedUserId={selectedUser?.id ?? null}
+          selectedUserId={selectedUser?._id ?? null}
           onReturn={handleReturn}
         />
       )}

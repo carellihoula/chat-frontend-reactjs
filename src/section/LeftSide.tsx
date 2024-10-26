@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import ConversationList from "../components/ConversationList";
-import { users } from "../mock/users";
 import SearchBar from "../components/SearchBar";
 import CopyRightFragment from "../components/CopyRightFragment";
 import Settings from "../pages/Settings";
@@ -10,18 +9,22 @@ import { useSelectedUser } from "../context/SelectedUserContext";
 import { useMediaQuery } from "react-responsive";
 import RightSide from "./RightSide";
 import { useEffect, useState } from "react";
+//import SearchUser from "../components/SearchUser";
+import UserList from "../pages/ContactComponent";
+import { useUserContext } from "../context/UsersListContext";
 
 const LeftSide = () => {
   const { selectedMenuId } = useMenu();
   const { selectedUser, setSelectedUser } = useSelectedUser();
   const [user, setUser] = useState(null);
+  const { users } = useUserContext();
   {
     /*<RightSide selectedUserId={selectedUser?.id ?? null} />*/
   }
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   const handleClick = (id: string) => {
     //alert(`Clicked person with ID: ${id}`);
-    const person = users.find((user) => user.id === id);
+    const person = users.find((user) => user._id === id);
     if (person) {
       setSelectedUser(person);
     }
@@ -44,7 +47,7 @@ const LeftSide = () => {
         if (selectedUser && isMobile) {
           return (
             <RightSide
-              selectedUserId={selectedUser.id}
+              selectedUserId={selectedUser._id}
               onReturn={handleReturn}
             />
           );
@@ -65,7 +68,8 @@ const LeftSide = () => {
             <SearchBarWrapper isMobile={isMobile}>
               <SearchBar />
             </SearchBarWrapper>
-            <div>My Friends</div>;
+            {/*<SearchUser />*/}
+            <UserList />
           </>
         );
       case 4:
@@ -77,6 +81,7 @@ const LeftSide = () => {
   return (
     <LeftSideStyled isMobile={isMobile}>
       {renderContent()}
+
       <CopyRightFragment />
     </LeftSideStyled>
   );

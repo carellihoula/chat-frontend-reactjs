@@ -2,6 +2,7 @@ import React from "react";
 import { PersonItemProps } from "../types__interfaces/interface";
 import styled from "styled-components";
 import { AiOutlineDelete } from "react-icons/ai";
+import { toCapitalize } from "../utils/Capitalize";
 
 interface PersonItemPropsExtended extends PersonItemProps {
   isSelected: boolean;
@@ -22,7 +23,7 @@ export const PersonItem: React.FC<PersonItemPropsExtended> = ({
           <img src={photo} alt={name} />
         </div>
       </div>
-      <div className="name">{name}</div>
+      <div className="name">{toCapitalize(name)}</div>
 
       <AiOutlineDelete color="#FFF" size={24} className="delete" />
     </PersonItemStyled>
@@ -64,6 +65,7 @@ const PersonItemStyled = styled.div<{ isSelected: boolean }>`
     position: absolute;
     right: 20px; /* Adjust as necessary */
     bottom: 30px; /* Adjust as necessary */
+
     display: ${(props) => (props.isSelected ? "flex" : "none")};
   }
 

@@ -13,7 +13,7 @@ const LoginAndRegister: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     // Logique de connexion
-    console.log("Connexion avec:", { email, password });
+    //console.log("Connexion avec:", { email });
     // Vous pouvez ajouter des appels API ici
     setError(null);
     try {
@@ -37,6 +37,7 @@ const LoginAndRegister: React.FC = () => {
     setError(null);
     try {
       const data = await register({ username, email, password });
+      console.log("connecté: " + data.user);
       loginLStorage(data.user, data.token);
       navigate("/");
     } catch (err: any) {

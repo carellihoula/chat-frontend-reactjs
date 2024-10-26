@@ -6,6 +6,7 @@ import { IoChatbubblesOutline } from "react-icons/io5";
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import MenuItemComponent from "../components/MobilePhoneScreen/MenuItemComponent";
 import { useMenu } from "../context/MenuContext";
+import { menuItems } from "../utils/menu";
 
 // Styled component for the menu bar
 const MenuBarContainer = styled.div`
@@ -25,50 +26,21 @@ const MenuBarContainer = styled.div`
 `;
 
 const MenuBarPhone = () => {
-  // State to keep track of the selected menu, "chat" is default
-  const [selectedMenu, setSelectedMenu] = useState<string>("chat");
   const { selectedMenuId, setSelectedMenuId } = useMenu();
 
   return (
     <MenuBarContainer>
-      <MenuItemComponent
-        icon={
-          <img
-            src="https://randomuser.me/api/portraits/men/1.jpg"
-            alt="Profile"
-            style={{ width: 36, borderRadius: "50%" }}
-          />
-        }
-        onClick={() => {
-          setSelectedMenuId(1);
-          setSelectedMenu("profile");
-        }}
-        isSelected={selectedMenu === "profile"}
-      />
-      <MenuItemComponent
-        icon={<IoChatbubblesOutline size={36} color="#FFF" />}
-        onClick={() => {
-          setSelectedMenuId(2);
-          setSelectedMenu("chat");
-        }}
-        isSelected={selectedMenu === "chat"}
-      />
-      <MenuItemComponent
-        icon={<LiaUserFriendsSolid size={36} color="#FFF" />}
-        onClick={() => {
-          setSelectedMenuId(3);
-          setSelectedMenu("friends");
-        }}
-        isSelected={selectedMenu === "friends"}
-      />
-      <MenuItemComponent
-        icon={<CiSettings size={36} color="#FFF" />}
-        onClick={() => {
-          setSelectedMenuId(4);
-          setSelectedMenu("settings");
-        }}
-        isSelected={selectedMenu === "settings"}
-      />
+      {menuItems.map((item) => (
+        <MenuItemComponent
+          key={item.id}
+          icon={item.icon}
+          image={item.imgUrl}
+          onClick={() => {
+            setSelectedMenuId(item.id);
+          }}
+          isSelected={selectedMenuId === item.id}
+        />
+      ))}
     </MenuBarContainer>
   );
 };

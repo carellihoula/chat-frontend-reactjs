@@ -1,3 +1,4 @@
+import { IconType } from "react-icons";
 import styled from "styled-components";
 
 // Styled component for each menu item
@@ -17,14 +18,15 @@ const MenuItem = styled.div`
 `;
 
 interface MenuItemProps {
-  icon?: JSX.Element;
-  img?: string;
+  icon?: IconType;
+  image?: string;
   onClick: () => void;
   isSelected: boolean; // Indicates if this menu is selected
 }
 
 const MenuItemComponent: React.FC<MenuItemProps> = ({
-  icon,
+  icon: Icon,
+  image,
   onClick,
   isSelected,
 }) => {
@@ -33,7 +35,11 @@ const MenuItemComponent: React.FC<MenuItemProps> = ({
       onClick={onClick}
       style={{ background: isSelected ? "#3f4248" : "transparent" }}
     >
-      {icon}
+      {Icon ? (
+        <Icon size={36} color="#FFF" />
+      ) : (
+        image && <img src={image} style={{ width: 36, borderRadius: "50%" }} />
+      )}
     </MenuItem>
   );
 };

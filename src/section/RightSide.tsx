@@ -2,20 +2,21 @@ import styled from "styled-components";
 import MessageInput from "../components/message/MessageInput";
 import SingleMessage from "../components/message/SingleMessage";
 import ChatHeader from "../components/ChatHeader";
-import { users } from "../mock/users";
 import { useEffect, useRef } from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useSocket } from "../context/SocketContext";
 import { useAuth } from "../context/AuthContext";
+import { useUserContext } from "../context/UsersListContext";
 
 interface RightSideProps {
   selectedUserId: string | null;
-  onReturn: () => void; // Typage de selectedUserId
+  onReturn: () => void;
 }
 
 const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
   const { messages, sendMessage, setRecipientId } = useSocket();
   const { userId } = useAuth();
+  const { users } = useUserContext();
   console.log("user: " + userId);
   //const [messages, setMessages] = useState(initialMessages);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -35,22 +36,22 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
     if (selectedUserId) {
       setRecipientId(selectedUserId);
     }
-  }, [selectedUserId, setRecipientId]);
+  }, [selectedUserId]);
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  // Trouver l'utilisateur sélectionné
-  const selectedUser = users.find((user) => user.id === selectedUserId);
+  // find a selected user
+  const selectedUser = users.find((user) => user._id === selectedUserId);
 
-  // Filtrer les messages pour n'afficher que ceux entre l'utilisateur connecté et le sélectionné
+  // Filter messages to display only those between the logged-in user and the selected user
   const filteredMessages = messages.filter(
     (message) =>
       (message.senderId === userId && message.recipientId === selectedUserId) ||
       (message.senderId === selectedUserId && message.recipientId === userId)
   );
-
+  console.log("check: " + selectedUserId + " user" + selectedUser);
   return (
     <RightSideStyled>
       {selectedUserId && selectedUser ? (

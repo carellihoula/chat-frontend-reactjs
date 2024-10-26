@@ -9,11 +9,22 @@ export interface PersonItemProps {
 }
 
 export interface Person {
-  id: string;
+  _id: string;
   username: string;
-  status: boolean;
-  avatar: string;
   email: string;
+  avatar: string;
+  status: boolean;
+  friends?: string[]; // IDs des amis
+  friendRequests?: string[];
+}
+
+export interface FriendRequest {
+  id: string;
+  requester: Person | string;
+  recipient: Person | string;
+  status: "pending" | "accepted" | "rejected";
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Message {
