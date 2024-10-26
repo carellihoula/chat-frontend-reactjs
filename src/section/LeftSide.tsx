@@ -12,12 +12,15 @@ import { useEffect, useState } from "react";
 //import SearchUser from "../components/SearchUser";
 import UserList from "../pages/ContactComponent";
 import { useUserContext } from "../context/UsersListContext";
+import { useSocket } from "../context/SocketContext";
+import emptyConversation from "/images/boite-vide-ouverte.png";
 
 const LeftSide = () => {
   const { selectedMenuId } = useMenu();
   const { selectedUser, setSelectedUser } = useSelectedUser();
   const [user, setUser] = useState(null);
   const { users } = useUserContext();
+  const { messages } = useSocket();
   {
     /*<RightSide selectedUserId={selectedUser?.id ?? null} />*/
   }
@@ -57,6 +60,20 @@ const LeftSide = () => {
               <SearchBarWrapper isMobile={isMobile}>
                 <SearchBar />
               </SearchBarWrapper>
+              {messages.length === 0 && (
+                <NoConversation>
+                  <img
+                    src={emptyConversation}
+                    alt="empty conversation"
+                    width="100px"
+                    height="100px"
+                  />
+                  <p>
+                    No conversations yet. Go to Contacts or search for a user by
+                    email to start chatting.
+                  </p>
+                </NoConversation>
+              )}
               <ConversationList onPersonClick={handleClick} person={users} />
             </>
           );
@@ -113,5 +130,25 @@ const SearchBarWrapper = styled.div<{ isMobile: boolean }>`
 
   @media (max-width: 480px) {
     justify-content: center;
+  }
+`;
+
+const NoConversation = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  gap: 20px;
+  //background-color: red;
+  overflow-y: hidden;
+
+  p {
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    text-align: center;
+    padding: 10px;
   }
 `;
