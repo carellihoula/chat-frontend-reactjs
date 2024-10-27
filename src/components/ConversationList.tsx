@@ -22,14 +22,15 @@ export const ConversationList: React.FC<ConversationListProps> = ({
   const token = localStorage.getItem("token");
 
   //get id of currentUser
-  const userId = token && getUserIdFromToken(token);
+  const currentUser = token && getUserIdFromToken(token);
 
   //  displays users with whom you have at least one conversation
   const usersWithConversations = users.filter((user) =>
     messages.some(
       (message) =>
-        (message.senderId === user._id && message.recipientId === userId) ||
-        (message.senderId === userId && message.recipientId === user._id)
+        (message.senderId === user._id &&
+          message.recipientId === currentUser) ||
+        (message.senderId === currentUser && message.recipientId === user._id)
     )
   );
 

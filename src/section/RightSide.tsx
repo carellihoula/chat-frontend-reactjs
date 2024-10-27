@@ -51,7 +51,7 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
       (message.senderId === userId && message.recipientId === selectedUserId) ||
       (message.senderId === selectedUserId && message.recipientId === userId)
   );
-  console.log("check: " + selectedUserId + " user" + selectedUser);
+
   return (
     <RightSideStyled>
       {selectedUserId && selectedUser ? (

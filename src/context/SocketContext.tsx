@@ -26,8 +26,23 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [recipientId, setRecipientId] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
+
+  // Obtenir l'ID de l'utilisateur connecté à partir du token
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const userIdFromToken = getUserIdFromToken(token);
+      if (userIdFromToken) {
+        setUserId(userIdFromToken);
+        socket.auth = { token }; // Ajouter le token d'authentification pour socket.io
+        socket.connect(); // Se connecter au serveur socket.io
+      }
+    }
+  }, []);
 
   useEffect(() => {
+    if (!userId) return;
     if (!recipientId) return;
 
     // Récupérer l'historique des messages
@@ -51,20 +66,11 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     // Écouter les messages entrants
-    const token = localStorage.getItem("token");
-    if (!token) return;
     socket.on("receiveMessage", (message: Message) => {
-      if (
-        (message.senderId === recipientId &&
-          message.recipientId === getUserIdFromToken(token)) ||
-        (message.senderId === getUserIdFromToken(token) &&
-          message.recipientId === recipientId)
-      ) {
-        setMessages((prevMessages) => [...prevMessages, message]);
-      }
+      setMessages((prevMessages) => [...prevMessages, message]);
     });
 
-    // Optionnel : écouter les confirmations d'envoi de messages
+    // Confirmation de l'envoi au sender
     socket.on("messageSent", (message: Message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
