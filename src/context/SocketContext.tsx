@@ -9,6 +9,7 @@ interface SocketContextProps {
   messages: Message[];
   sendMessage: (content: string, recipientId: string, senderId: string) => void;
   setRecipientId: (id: string) => void;
+  users: any[];
 }
 
 const SocketContext = createContext<SocketContextProps | undefined>(undefined);
@@ -27,6 +28,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   const [messages, setMessages] = useState<Message[]>([]);
   const [recipientId, setRecipientId] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
+  const [users, setUsers] = useState<any[]>([]);
 
   // Obtenir l'ID de l'utilisateur connecté à partir du token
   useEffect(() => {
@@ -41,7 +43,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (!userId) return;
     if (!recipientId) return;
 
@@ -62,9 +64,14 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
     };
 
     fetchMessages();
-  }, [recipientId]);
+  }, [recipientId]); */
 
   useEffect(() => {
+    // Écouter l'historique des messages
+    socket.on("messageHistory", (messageHistory: Message[]) => {
+      setMessages(messageHistory);
+      console.log("history: " + messages);
+    });
     // Écouter les messages entrants
     socket.on("receiveMessage", (message: Message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
@@ -80,11 +87,18 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
       console.error("Erreur Socket.IO:", error.error);
     });
 
+    // Écouter la liste des utilisateurs connectés
+    socket.on("userList", (connectedUsers) => {
+      setUsers(connectedUsers);
+    });
+
     // Nettoyer les écouteurs lors du démontage
     return () => {
+      socket.off("messageHistory");
       socket.off("receiveMessage");
       socket.off("messageSent");
       socket.off("errorMessage");
+      socket.off("userList");
     };
   }, []);
 
@@ -101,7 +115,9 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <SocketContext.Provider value={{ messages, sendMessage, setRecipientId }}>
+    <SocketContext.Provider
+      value={{ messages, sendMessage, users, setRecipientId }}
+    >
       {children}
     </SocketContext.Provider>
   );

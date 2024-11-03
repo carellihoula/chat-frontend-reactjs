@@ -4,12 +4,14 @@ import styled from "styled-components";
 import { useSelectedUser } from "../context/SelectedUserContext";
 import { useUserContext } from "../context/UsersListContext";
 import { useMenu } from "../context/MenuContext";
+import { useSocket } from "../context/SocketContext";
 
 const UserList: React.FC = () => {
   //const [users, setUsers] = useState<Person[]>([]);
   const { setSelectedUser } = useSelectedUser();
   const { setSelectedMenuId } = useMenu();
-  const { users, loading, error } = useUserContext();
+  const { loading, error } = useUserContext();
+  const { messages, users, sendMessage, setRecipientId } = useSocket();
 
   if (loading) {
     return <LoadingMessage>Chargement des utilisateurs...</LoadingMessage>;

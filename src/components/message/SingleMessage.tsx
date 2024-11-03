@@ -3,7 +3,8 @@ import React from "react";
 import { Message } from "../../types__interfaces/interface";
 import styled from "styled-components";
 import { useSelectedUser } from "../../context/SelectedUserContext";
-import { useUserContext } from "../../context/UsersListContext";
+//import { useUserContext } from "../../context/UsersListContext";
+import { useSocket } from "../../context/SocketContext";
 
 interface SingleMessageProps {
   message: Message;
@@ -11,7 +12,7 @@ interface SingleMessageProps {
 
 const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
   const messageDate = new Date(message.timestamp);
-  const { users } = useUserContext();
+  const { users } = useSocket();
   //const token = localStorage.getItem("token");
   const { selectedUser } = useSelectedUser();
   // Formater la date au format jour/mois/année

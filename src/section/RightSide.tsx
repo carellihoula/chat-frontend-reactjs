@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useSocket } from "../context/SocketContext";
 import { useAuth } from "../context/AuthContext";
-import { useUserContext } from "../context/UsersListContext";
+//import { useUserContext } from "../context/UsersListContext";
 
 interface RightSideProps {
   selectedUserId: string | null;
@@ -16,7 +16,7 @@ interface RightSideProps {
 const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
   const { messages, sendMessage, setRecipientId } = useSocket();
   const { userId } = useAuth();
-  const { users } = useUserContext();
+  const { users } = useSocket();
   console.log("user: " + userId);
   //const [messages, setMessages] = useState(initialMessages);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
