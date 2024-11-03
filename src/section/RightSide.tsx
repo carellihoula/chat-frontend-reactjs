@@ -16,7 +16,7 @@ interface RightSideProps {
 const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
   const { messages, sendMessage, setRecipientId } = useSocket();
   const { userId } = useAuth();
-  const { users } = useSocket();
+  const { allUsers } = useSocket();
   console.log("user: " + userId);
   //const [messages, setMessages] = useState(initialMessages);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -43,7 +43,7 @@ const RightSide: React.FC<RightSideProps> = ({ selectedUserId, onReturn }) => {
   }, [messages]);
 
   // find a selected user
-  const selectedUser = users.find((user) => user._id === selectedUserId);
+  const selectedUser = allUsers.find((user) => user._id === selectedUserId);
 
   // Filter messages to display only those between the logged-in user and the selected user
   const filteredMessages = messages.filter(

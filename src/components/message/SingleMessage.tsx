@@ -12,7 +12,7 @@ interface SingleMessageProps {
 
 const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
   const messageDate = new Date(message.timestamp);
-  const { users } = useSocket();
+  const { allUsers } = useSocket();
   //const token = localStorage.getItem("token");
   const { selectedUser } = useSelectedUser();
   // Formater la date au format jour/mois/année
@@ -22,7 +22,7 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
     year: "numeric",
   });
 
-  const user = users.find((user) => user._id === message.senderId);
+  const user = allUsers.find((user) => user._id === message.senderId);
 
   // Formater l'heure en heures:minutes (format 24h)
   const formattedTime = messageDate.toLocaleTimeString("fr-FR", {
@@ -51,7 +51,9 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
             {formattedDate} {formattedTime}
           </small>
         </p>
-        <div className="message">{message.content}</div>
+        <div className="message">
+          <p>{message.content}</p>
+        </div>
       </div>
     </SingleMessageStyled>
   );
@@ -75,6 +77,7 @@ const SingleMessageStyled = styled.div`
   .message {
     display: flex;
     align-items: flex-start;
+
     margin-bottom: 15px;
   }
 
@@ -92,7 +95,9 @@ const SingleMessageStyled = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 80%;
+    max-width: 80%; /* Limiter la largeur du contenu du message */
+    word-wrap: break-word; /* Permettre le retour à la ligne */
+    overflow-wrap: break-word;
   }
 
   .message-content p {

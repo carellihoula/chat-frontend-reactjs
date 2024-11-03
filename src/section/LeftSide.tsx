@@ -11,7 +11,6 @@ import RightSide from "./RightSide";
 import { useEffect, useState } from "react";
 //import SearchUser from "../components/SearchUser";
 import UserList from "../pages/ContactComponent";
-import { useUserContext } from "../context/UsersListContext";
 import { useSocket } from "../context/SocketContext";
 import emptyConversation from "/images/boite-vide-ouverte.png";
 
@@ -19,15 +18,14 @@ const LeftSide = () => {
   const { selectedMenuId } = useMenu();
   const { selectedUser, setSelectedUser } = useSelectedUser();
   const [user, setUser] = useState(null);
-  const { users } = useUserContext();
-  const { messages } = useSocket();
+  const { messages, allUsers } = useSocket();
   {
     /*<RightSide selectedUserId={selectedUser?.id ?? null} />*/
   }
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   const handleClick = (id: string) => {
     //alert(`Clicked person with ID: ${id}`);
-    const person = users.find((user) => user._id === id);
+    const person = allUsers.find((user) => user._id === id);
     if (person) {
       setSelectedUser(person);
     }
@@ -72,9 +70,14 @@ const LeftSide = () => {
                     No conversations yet. Go to Contacts or search for a user by
                     email to start chatting.
                   </p>
+                  <p>
+                    Create two user accounts by signing up in two different
+                    browsers (or in a public and private window of the same
+                    browser).
+                  </p>
                 </NoConversation>
               )}
-              <ConversationList onPersonClick={handleClick} person={users} />
+              <ConversationList onPersonClick={handleClick} person={allUsers} />
             </>
           );
         }

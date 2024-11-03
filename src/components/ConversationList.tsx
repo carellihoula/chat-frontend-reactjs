@@ -16,8 +16,7 @@ export const ConversationList: React.FC<ConversationListProps> = ({
   onPersonClick,
 }) => {
   const { selectedUser } = useSelectedUser();
-  const { users } = useUserContext();
-  const { messages } = useSocket();
+  const { messages, allUsers } = useSocket();
   // Filtrer les utilisateurs pour exclure l'utilisateur connecté (id: 1)
   const token = localStorage.getItem("token");
 
@@ -25,7 +24,7 @@ export const ConversationList: React.FC<ConversationListProps> = ({
   const currentUser = token && getUserIdFromToken(token);
 
   //  displays users with whom you have at least one conversation
-  const usersWithConversations = users.filter((user) =>
+  const usersWithConversations = allUsers.filter((user) =>
     messages.some(
       (message) =>
         (message.senderId === user._id &&

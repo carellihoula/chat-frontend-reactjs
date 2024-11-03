@@ -1,15 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import socket from "../socket";
 import { Message } from "../types__interfaces/interface";
-import axios from "axios";
+
 import { getUserIdFromToken } from "../utils/auth";
-import { getAuthHeaders } from "../utils/getAuthHeaders";
+//import { getAuthHeaders } from "../utils/getAuthHeaders";
 
 interface SocketContextProps {
   messages: Message[];
   sendMessage: (content: string, recipientId: string, senderId: string) => void;
   setRecipientId: (id: string) => void;
   users: any[];
+  allUsers: any[];
 }
 
 const SocketContext = createContext<SocketContextProps | undefined>(undefined);
@@ -29,6 +30,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   const [recipientId, setRecipientId] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
   const [users, setUsers] = useState<any[]>([]);
+  const [allUsers, setAllUsers] = useState<any[]>([]);
 
   // Obtenir l'ID de l'utilisateur connecté à partir du token
   useEffect(() => {
@@ -88,8 +90,9 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
     });
 
     // Écouter la liste des utilisateurs connectés
-    socket.on("userList", (connectedUsers) => {
-      setUsers(connectedUsers);
+    socket.on("userList", ({ allUsers, connectedUsers }) => {
+      allUsers && setUsers(connectedUsers);
+      connectedUsers && setAllUsers(allUsers);
     });
 
     // Nettoyer les écouteurs lors du démontage
@@ -116,7 +119,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <SocketContext.Provider
-      value={{ messages, sendMessage, users, setRecipientId }}
+      value={{ messages, sendMessage, users, allUsers, setRecipientId }}
     >
       {children}
     </SocketContext.Provider>
