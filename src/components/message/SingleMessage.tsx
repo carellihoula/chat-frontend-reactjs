@@ -42,7 +42,7 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
         className={`message-content ${
           message.recipientId === selectedUser?._id
             ? "recipient"
-            : "current_user"
+            : "current__user"
         }`}
       >
         <p>
@@ -75,10 +75,7 @@ const SingleMessageStyled = styled.div`
     border-radius: 10px 0 10px 0;
   }
   .message {
-    display: flex;
-    align-items: flex-start;
-
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   .avatar {
@@ -109,7 +106,7 @@ const SingleMessageStyled = styled.div`
     color: #f2f3f5;
     font-size: 1.2rem;
   }
-  .message {
+  .message p {
     color: #bfc1c5;
   }
   .date {
@@ -121,21 +118,27 @@ const SingleMessageStyled = styled.div`
       display: none;
     }
     .recipient {
-      background-color: #fff;
+      background-color: green;
       border-radius: 10px 0 10px 0;
-
-      * {
-        color: black;
-      }
+     
     }
     .current__user {
-      background-color: green;
+      background-color: #fff;
+      border-radius: 10px 0 10px 0;
+      
     }
     .sender__name {
       display: none;
     }
     .message {
       padding: 5px;
+    }
+    .recipient .message p{
+      
+      color:#FFF;
+    }
+    .current__user .message p{
+      color:#161616;
     }
     &:hover {
       background: none;
