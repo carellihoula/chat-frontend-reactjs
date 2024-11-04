@@ -87,8 +87,9 @@ const RightSideStyled = styled.div`
   position: relative;
   width: 65%;
   height: 100%;
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     width: 100%;
+   
   }
 `;
 
@@ -105,6 +106,11 @@ const Messages = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-bottom: 130px;
+   
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -130,7 +136,7 @@ const LogoContainer = styled.div`
       "Lucida Sans", Arial, sans-serif;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     display: flex;
     flex-direction: column;
     justify-content: center;

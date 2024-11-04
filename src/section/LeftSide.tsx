@@ -22,7 +22,7 @@ const LeftSide = () => {
   {
     /*<RightSide selectedUserId={selectedUser?.id ?? null} />*/
   }
-  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
   const handleClick = (id: string) => {
     //alert(`Clicked person with ID: ${id}`);
     const person = allUsers.find((user) => user._id === id);
@@ -116,7 +116,7 @@ const LeftSideStyled = styled.div<{ isMobile: boolean }>`
   width: 30%;
   position: relative;
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     display: ${(props) =>
       props.isMobile ? "block" : "none"}; /* Visible on mobile */
     height: 100vh; /* Adjust height for mobile view */
@@ -131,7 +131,7 @@ const SearchBarWrapper = styled.div<{ isMobile: boolean }>`
   padding: ${(props) => (props.isMobile ? "20px 0" : "10px 0")};
   width: 100%;
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     justify-content: center;
   }
 `;

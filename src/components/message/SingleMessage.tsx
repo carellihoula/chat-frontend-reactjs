@@ -1,10 +1,11 @@
 // SingleMessage.tsx
 import React from "react";
-import { Message } from "../../types__interfaces/interface";
+import { Message, Person } from "../../types__interfaces/interface";
 import styled from "styled-components";
 import { useSelectedUser } from "../../context/SelectedUserContext";
 //import { useUserContext } from "../../context/UsersListContext";
 import { useSocket } from "../../context/SocketContext";
+import { getUserIdFromToken } from "../../utils/auth";
 
 interface SingleMessageProps {
   message: Message;
@@ -13,6 +14,7 @@ interface SingleMessageProps {
 const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
   const messageDate = new Date(message.timestamp);
   const { allUsers } = useSocket();
+  const token = localStorage.getItem("token") 
   //const token = localStorage.getItem("token");
   const { selectedUser } = useSelectedUser();
   // Formater la date au format jour/mois/année
@@ -22,7 +24,7 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
     year: "numeric",
   });
 
-  const user = allUsers.find((user) => user._id === message.senderId);
+  const user: Person = allUsers.find((user) => user._id === message.senderId);
 
   // Formater l'heure en heures:minutes (format 24h)
   const formattedTime = messageDate.toLocaleTimeString("fr-FR", {
@@ -32,7 +34,7 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
   });
   console.log(message);
   return (
-    <SingleMessageStyled className="message flex items-start">
+    <SingleMessageStyled isCurrentUser={message.senderId === getUserIdFromToken(token ?? "")} className="message flex items-start">
       <div className="avatar mr-4">
         <div className="w-16 rounded-full">
           <img src={user?.avatar} alt={message.content} />
@@ -61,7 +63,7 @@ const SingleMessage: React.FC<SingleMessageProps> = ({ message }) => {
 
 export default SingleMessage;
 
-const SingleMessageStyled = styled.div`
+const SingleMessageStyled = styled.div<{isCurrentUser: boolean}>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -111,9 +113,17 @@ const SingleMessageStyled = styled.div`
   }
   .date {
     color: #bfc1c5;
+    padding-right:5px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: ${props => props.isCurrentUser ? "flex-start":"flex-end"};
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    height: auto;
     .avatar {
       display: none;
     }
