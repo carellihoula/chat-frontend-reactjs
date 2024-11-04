@@ -19,7 +19,7 @@ export interface EditPasswordData {
 export interface AuthResponse {
   token: string;
   user: {
-    id: string;
+    _id: string;
     username: string;
     email: string;
     avatar: string;

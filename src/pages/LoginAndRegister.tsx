@@ -18,6 +18,7 @@ const LoginAndRegister: React.FC = () => {
     setError(null);
     try {
       const data = await login({ email, password });
+      console.log(data)
       loginLStorage(data.user, data.token);
       navigate("/");
     } catch (err: any) {
