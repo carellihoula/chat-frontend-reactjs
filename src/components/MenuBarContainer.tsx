@@ -1,9 +1,4 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-//import { IoMdContacts } from "react-icons/io";
-import { CiSettings } from "react-icons/ci";
-import { IoChatbubblesOutline } from "react-icons/io5";
-import { LiaUserFriendsSolid } from "react-icons/lia";
 import MenuItemComponent from "../components/MobilePhoneScreen/MenuItemComponent";
 import { useMenu } from "../context/MenuContext";
 import { menuItems } from "../utils/menu";

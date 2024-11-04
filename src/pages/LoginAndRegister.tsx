@@ -9,16 +9,14 @@ import { useNavigate } from "react-router-dom";
 const LoginAndRegister: React.FC = () => {
   const { loginLStorage } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"login" | "register">("register"); // Default to register
   const navigate = useNavigate();
 
   const handleLogin = async (email: string, password: string) => {
-    // Logique de connexion
-    //console.log("Connexion avec:", { email });
-    // Vous pouvez ajouter des appels API ici
     setError(null);
     try {
       const data = await login({ email, password });
-      console.log(data)
+      console.log(data);
       loginLStorage(data.user, data.token);
       navigate("/");
     } catch (err: any) {
@@ -32,9 +30,6 @@ const LoginAndRegister: React.FC = () => {
     email: string,
     password: string
   ) => {
-    // Logique d'inscription
-    console.log("register with:", { username, email });
-    // Vous pouvez ajouter des appels API ici
     setError(null);
     try {
       const data = await register({ username, email, password });
@@ -49,8 +44,32 @@ const LoginAndRegister: React.FC = () => {
 
   return (
     <Container>
-      <Login onLogin={handleLogin} />
-      <Register onRegister={handleRegister} />
+      <Tabs>
+        <Tab
+          active={activeTab === "login"}
+          onClick={() => setActiveTab("login")}
+        >
+          Login
+        </Tab>
+        <Tab
+          active={activeTab === "register"}
+          onClick={() => setActiveTab("register")}
+        >
+          Register
+        </Tab>
+      </Tabs>
+      {activeTab === "login" ? (
+        <div style={{display:"flex", justifyContent:"center"}}>
+            <Login onLogin={handleLogin} />
+        </div>
+        
+      ) : (
+        <div style={{display:"flex", justifyContent:"center"}}>
+           <Register onRegister={handleRegister} />
+        </div>
+        
+      )}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </Container>
   );
 };
@@ -58,16 +77,42 @@ const LoginAndRegister: React.FC = () => {
 export default LoginAndRegister;
 
 const Container = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   gap: 20px;
   height: 100vh;
   background-color: #2b2d31;
 
   @media (max-width: 900px) {
-    flex-direction: column;
-    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
   }
+`;
+
+const Tabs = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+const Tab = styled.button<{ active: boolean }>`
+  background: ${(props) => (props.active ? "#3c4043" : "#2b2d31")};
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+  &:hover {
+    background: #3c4043;
+  }
+`;
+
+const ErrorMessage = styled.div`
+  color: #ff4d4f;
+  margin-top: 10px;
+  font-size: 0.9em;
 `;

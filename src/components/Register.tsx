@@ -17,17 +17,17 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
 
   return (
     <FormContainer>
-      <Title>Inscription</Title>
+      <Title>Register</Title>
       <form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label htmlFor="register-name">Nom :</Label>
+          <Label htmlFor="register-name">Name :</Label>
           <Input
             type="text"
             id="register-name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            placeholder="Entrez votre nom"
+            placeholder="type your name"
           />
         </FormGroup>
         <FormGroup>
@@ -38,21 +38,21 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Entrez votre email"
+            placeholder="type your email"
           />
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="register-password">Mot de passe :</Label>
+          <Label htmlFor="register-password">Password :</Label>
           <Input
             type="password"
             id="register-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder="Entrez votre mot de passe"
+            placeholder="Typz your password"
           />
         </FormGroup>
-        <Button type="submit">S'inscrire</Button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </FormContainer>
   );
@@ -62,18 +62,22 @@ export default Register;
 
 // Réutilisation des mêmes styles que pour Login
 const FormContainer = styled.div`
-  flex: 1;
+ 
+  width: 350px;
   max-width: 400px;
   border: 1px solid #ccc;
+  height: 450px;
+  color:#FFF;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  background-color: #313338;;
 `;
 
 const Title = styled.h2`
   text-align: center;
   margin-bottom: 20px;
+  font-weight: bold;
 `;
 
 const FormGroup = styled.div`
@@ -92,6 +96,7 @@ const Input = styled.input`
   box-sizing: border-box;
   border: 1px solid #aaa;
   border-radius: 4px;
+  color:#000;
 `;
 
 const Button = styled.button`

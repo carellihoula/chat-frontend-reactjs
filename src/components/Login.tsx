@@ -16,7 +16,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   return (
     <FormContainer>
-      <Title>Connexion</Title>
+      <Title>Login</Title>
       <form onSubmit={handleSubmit}>
         <FormGroup>
           <Label htmlFor="login-email">Email :</Label>
@@ -26,21 +26,21 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Entrez votre email"
+            placeholder="type your email"
           />
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="login-password">Mot de passe :</Label>
+          <Label htmlFor="login-password">Password :</Label>
           <Input
             type="password"
             id="login-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder="Entrez votre mot de passe"
+            placeholder="Type your password"
           />
         </FormGroup>
-        <Button type="submit">Se connecter</Button>
+        <Button type="submit">Sign In</Button>
       </form>
     </FormContainer>
   );
@@ -50,18 +50,21 @@ export default Login;
 
 // Styles spécifiques au composant Login
 const FormContainer = styled.div`
-  flex: 1;
+ 
+  width: 350px;
   max-width: 400px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  color:#FFF;
   padding: 20px;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  background-color: #313338;
 `;
 
 const Title = styled.h2`
   text-align: center;
   margin-bottom: 20px;
+  font-weight: bold;
 `;
 
 const FormGroup = styled.div`
@@ -80,6 +83,7 @@ const Input = styled.input`
   box-sizing: border-box;
   border: 1px solid #aaa;
   border-radius: 4px;
+  color:#000;
 `;
 
 const Button = styled.button`
