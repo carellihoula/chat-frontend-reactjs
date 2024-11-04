@@ -12,7 +12,7 @@ type Props = {
 };
 
 const ChatHeader: React.FC<Props> = ({ person, onReturn }) => {
-  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
   return (
     <HeaderContainer>
       {isMobile && (

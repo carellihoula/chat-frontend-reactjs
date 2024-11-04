@@ -228,7 +228,7 @@ const ProfileStyled = styled.div`
     box-sizing: content-box;
     border-radius: 5px;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     margin-top: 50px;
     overflow-y: hidden;
   }

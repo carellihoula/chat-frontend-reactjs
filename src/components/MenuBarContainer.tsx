@@ -20,7 +20,7 @@ const MenuBarContainer = styled.div`
   width: 100%;
   box-sizing: content-box;
 
-  @media (min-width: 481px) {
+  @media (min-width: 900px) {
     display: none; /* Hide the menu bar on larger screens */
   }
 `;

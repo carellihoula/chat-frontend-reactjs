@@ -8,7 +8,7 @@ import MenuBarPhone from "../components/MenuBarContainer";
 import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
-  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
   const { selectedUser, setSelectedUser } = useSelectedUser();
 
   const handleReturn = () => {
@@ -36,7 +36,7 @@ const HomeStyled = styled.div`
   width: 100%;
   height: 100vh;
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     display: flex;
     flex-direction: column;
   }

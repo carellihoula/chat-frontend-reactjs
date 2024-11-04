@@ -80,7 +80,7 @@ const MessageInputStyled = styled.div`
     font-family: "Times New Roman", Times, serif;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     margin-bottom: 100px;
   }
 `;

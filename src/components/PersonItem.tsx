@@ -74,7 +74,7 @@ const PersonItemStyled = styled.div<{ isSelected: boolean }>`
     display: flex;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     display: flex;
     flex-direction: row;
     align-items: center;

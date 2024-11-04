@@ -42,7 +42,7 @@ const MenuStyled = styled.div`
     background: #e21b1b;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
