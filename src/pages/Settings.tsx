@@ -3,9 +3,7 @@ import { EditPassword } from "../components/EditPassword";
 import { useState } from "react";
 import LanguageSelect from "../components/LanguageSelect";
 
-type Props = {};
-
-const Settings = (props: Props) => {
+const Settings = () => {
   const [language, setLanguage] = useState("");
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

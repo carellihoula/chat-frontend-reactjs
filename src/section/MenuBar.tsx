@@ -3,11 +3,14 @@ import { menuItems } from "../utils/menu";
 import MenuList from "../components/menu/MenuList";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const MenuBar = () => {
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const handleLogout = () => {
     navigate("/auth");
+    logout();
   };
   return (
     <MenuStyled>

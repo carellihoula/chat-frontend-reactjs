@@ -10,7 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import RightSide from "./RightSide";
 import { useEffect, useState } from "react";
 //import SearchUser from "../components/SearchUser";
-import UserList from "../pages/ContactComponent";
+import UserList from "../pages/ConnectedUsers";
 import { useSocket } from "../context/SocketContext";
 import emptyConversation from "/images/boite-vide-ouverte.png";
 

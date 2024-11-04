@@ -29,7 +29,9 @@ const ChatHeader: React.FC<Props> = ({ person, onReturn }) => {
         </div>
         <div>
           <PersonName>{person.username}</PersonName>
-          <Status>{person.status ? "Online" : "Offline"}</Status>
+          <Status online={person.status}>
+            {person.status ? "online" : "offline"}
+          </Status>
         </div>
       </ProfileContainer>
       <OptionsContainer>
@@ -66,10 +68,12 @@ const PersonName = styled.p`
   margin: 0;
 `;
 
-const Status = styled.p`
+const Status = styled.p<{ online: boolean }>`
   font-size: 14px;
-  color: #bfc1c5;
+  //color: #bfc1c5;
   margin: 0;
+  color: ${(props) => (props.online ? "#4CAF50" : "#bfc1c5")};
+  font-weight: bold;
 `;
 
 const OptionsContainer = styled.div`

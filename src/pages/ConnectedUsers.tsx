@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PersonItem from "../components/PersonItem";
 import styled from "styled-components";
 import { useSelectedUser } from "../context/SelectedUserContext";
@@ -11,7 +11,7 @@ const UserList: React.FC = () => {
   const { setSelectedUser } = useSelectedUser();
   const { setSelectedMenuId } = useMenu();
   const { loading, error } = useUserContext();
-  const { messages, users, sendMessage, setRecipientId } = useSocket();
+  const { users } = useSocket();
 
   if (loading) {
     return <LoadingMessage>Chargement des utilisateurs...</LoadingMessage>;
@@ -32,17 +32,24 @@ const UserList: React.FC = () => {
 
   return (
     <Container>
-      {users.map((user) => (
-        <PersonItem
-          key={user._id}
-          id={user._id}
-          name={user.username}
-          photo={user.avatar}
-          onClick={handleUserClick}
-          status={user.status}
-          isSelected={false}
-        />
-      ))}
+      <h1 className="title">Connected Users</h1>
+      {users.length > 0 ? (
+        users.map((user) => (
+          <PersonItem
+            key={user._id}
+            id={user._id}
+            name={user.username}
+            photo={user.avatar}
+            onClick={handleUserClick}
+            status={user.status}
+            isSelected={false}
+          />
+        ))
+      ) : (
+        <h1 className="title" style={{ marginTop: "20px" }}>
+          No user is connected
+        </h1>
+      )}
     </Container>
   );
 };
@@ -53,6 +60,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  .title {
+    color: #fff;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: 1.2rem;
+  }
 `;
 const LoadingMessage = styled.div`
   font-size: 1.2rem;
