@@ -69,6 +69,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [recipientId]); */
 
   useEffect(() => {
+    
     // Écouter l'historique des messages
     socket.on("messageHistory", (messageHistory: Message[]) => {
       setMessages(messageHistory);
@@ -91,8 +92,8 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
 
     // Écouter la liste des utilisateurs connectés
     socket.on("userList", ({ allUsers, connectedUsers }) => {
-      allUsers && setUsers(connectedUsers);
-      connectedUsers && setAllUsers(allUsers);
+       setUsers(connectedUsers);
+       setAllUsers(allUsers);
     });
 
     // Nettoyer les écouteurs lors du démontage

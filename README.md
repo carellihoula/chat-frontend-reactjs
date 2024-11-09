@@ -1,50 +1,120 @@
-# React + TypeScript + Vite
+Here’s the entire README in Markdown format:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+````markdown
+# CanoChat - React + TypeScript + Vite
 
-Currently, two official plugins are available:
+This template sets up a minimal environment to get **React** working with **Vite**, **TypeScript**, and **HMR** (Hot Module Replacement). It also includes some initial **ESLint** rules for a consistent code style and improved development experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+To run CanoChat locally, follow these steps:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 1. Install Dependencies
 
-- Configure the top-level `parserOptions` property like this:
+Make sure you have [Node.js](https://nodejs.org/) installed. Then, install the necessary dependencies by running:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install
+```
+````
+
+### 2. Start the Development Server
+
+To start the app in development mode with HMR enabled, use the following command:
+
+```bash
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+This will launch a local server and automatically open the CanoChat app in your default browser. You can view the app by navigating to `http://localhost:3000` if it doesn’t open automatically.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 3. Build for Production
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+To prepare the app for deployment, build the project by running:
+
+```bash
+npm run build
+```
+
+This command compiles the app into a production-ready format in the `dist` directory.
+
+### 4. Preview the Production Build
+
+You can preview the production build with:
+
+```bash
+npm run preview
+```
+
+This serves the production build locally so you can ensure everything works as expected before deploying.
+
+## ESLint Configuration
+
+To maintain code quality, this project uses **ESLint** with specific configurations tailored for TypeScript and React. For production applications, we recommend updating the configuration to enable type-aware lint rules:
+
+1. **Top-Level `parserOptions`**:
+
+   Configure the top-level `parserOptions` as follows:
+
+   ```js
+   export default tseslint.config({
+     languageOptions: {
+       parserOptions: {
+         project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+         tsconfigRootDir: import.meta.dirname,
+       },
+     },
+   });
+   ```
+
+2. **Enhanced ESLint Presets**:
+
+   Replace `tseslint.configs.recommended` with either `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`, and optionally add `...tseslint.configs.stylisticTypeChecked` for stylistic linting.
+
+3. **React Plugin Setup**:
+
+   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update your ESLint configuration as follows:
+
+   ```js
+   // eslint.config.js
+   import react from "eslint-plugin-react";
+
+   export default tseslint.config({
+     settings: { react: { version: "18.3" } },
+     plugins: {
+       react,
+     },
+     rules: {
+       ...react.configs.recommended.rules,
+       ...react.configs["jsx-runtime"].rules,
+     },
+   });
+   ```
+
+## Screenshots
+
+Here’s a preview of the CanoChat interface:
+![CanoChat Login Screen](./images/canochat/home_page_canochat.png)  
+_Figure 1: CanoChat Login Screen_
+
+![CanoChat Login Screen](./images/canochat/register_page_canochat.png)  
+_Figure 1: CanoChat Login Screen_
+
+![CanoChat Login Screen](./images/canochat/login_page_canochat.png)  
+_Figure 1: CanoChat Login Screen_
+
+![CanoChat Chat Screen](./images/canochat/settings_page_canochat.png)  
+_Figure 2: CanoChat Chat Screen_
+
+## Additional Information
+
+- **Framework**: React + Vite
+- **TypeScript**: Type-safe, modern development
+- **HMR**: Instant updates during development
+
+Let me know if you need any more details or further refinement!
+
+```
+
+This Markdown file is fully formatted and includes all instructions and screenshots as you specified.
 ```
