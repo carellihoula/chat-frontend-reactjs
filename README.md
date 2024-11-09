@@ -97,14 +97,14 @@ Here’s a preview of the CanoChat interface:
 ![CanoChat Login Screen](https://github.com/carellihoula/chat-frontend-reactjs/blob/master/public/images/canochat/home_page_canochat.png)  
 _Figure 1: CanoChat Home Screen_
 
+![CanoChat Chat Screen](https://github.com/carellihoula/chat-frontend-reactjs/blob/master/public/images/canochat/settings_page_canochat.png)  
+_Figure 2: CanoChat Settings Screen_
+
 ![CanoChat Login Screen](https://github.com/carellihoula/chat-frontend-reactjs/blob/master/public/images/canochat/register_page_canochat.png)  
 _Figure 1: CanoChat Register Screen_
 
 ![CanoChat Login Screen](https://github.com/carellihoula/chat-frontend-reactjs/blob/master/public/images/canochat/login_page_canochat.png)  
 _Figure 1: CanoChat Login Screen_
-
-![CanoChat Chat Screen](https://github.com/carellihoula/chat-frontend-reactjs/blob/master/public/images/canochat/settings_page_canochat.png)  
-_Figure 2: CanoChat Settings Screen_
 
 ## Additional Information
 
