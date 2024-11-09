@@ -94,16 +94,18 @@ To maintain code quality, this project uses **ESLint** with specific configurati
 ## Screenshots
 
 Here’s a preview of the CanoChat interface:
-![CanoChat Login Screen](./images/canochat/home_page_canochat.png)  
+![CanoChat Login Screen](../chat-frontend-reactjs/public/images/canochat/home_page_canochat.png)  
+_Figure 1: CanoChat Login Screen_
+![CanoChat Login Screen](../chat-frontend-reactjs/public/images/canochat/home_page_canochat.png)  
 _Figure 1: CanoChat Login Screen_
 
-![CanoChat Login Screen](./images/canochat/register_page_canochat.png)  
+![CanoChat Login Screen](../chat-frontend-reactjs/public/images/canochat/register_page_canochat.png)  
 _Figure 1: CanoChat Login Screen_
 
-![CanoChat Login Screen](./images/canochat/login_page_canochat.png)  
+![CanoChat Login Screen](../chat-frontend-reactjs/public/images/canochat/login_page_canochat.png)  
 _Figure 1: CanoChat Login Screen_
 
-![CanoChat Chat Screen](./images/canochat/settings_page_canochat.png)  
+![CanoChat Chat Screen](../chat-frontend-reactjs/public/images/canochat/settings_page_canochat.png)  
 _Figure 2: CanoChat Chat Screen_
 
 ## Additional Information
