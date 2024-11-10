@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { login, register } from "../api/auth";
 import Login from "../components/Login";
 import Register from "../components/Register";
-import { login, register } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 const LoginAndRegister: React.FC = () => {
   const { loginLStorage } = useAuth();
@@ -21,7 +21,7 @@ const LoginAndRegister: React.FC = () => {
       navigate("/");
     } catch (err: any) {
       console.error(err);
-      setError(err.response?.data?.message || "Erreur lors de la connexion.");
+      setError(err.response?.data?.message || "Error when connecting");
     }
   };
 
@@ -59,15 +59,13 @@ const LoginAndRegister: React.FC = () => {
         </Tab>
       </Tabs>
       {activeTab === "login" ? (
-        <div style={{display:"flex", justifyContent:"center"}}>
-            <Login onLogin={handleLogin} />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Login onLogin={handleLogin} />
         </div>
-        
       ) : (
-        <div style={{display:"flex", justifyContent:"center"}}>
-           <Register onRegister={handleRegister} />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Register onRegister={handleRegister} />
         </div>
-        
       )}
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </Container>
